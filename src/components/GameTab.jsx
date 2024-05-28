@@ -7,6 +7,7 @@ import ReactCountryFlag from "react-country-flag"
 import { users } from "../constants/users";
 import { BiBarChart } from "react-icons/bi";
 import { useEffect } from "react";
+import moment from 'moment';
 
 
 export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }) => {
@@ -262,9 +263,6 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
 
     const gameTimer = () => {
         if (!isAvailableGame) return;
-        // if(date - new Date() <= 1){
-        //     setTimerAlert(true)
-        // }
         return (
 
             <div id={`timerWrapper-${id}`}>
@@ -323,6 +321,12 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
         }
     }
 
+    const needToShowTimer = ({ gameDate }) => {
+        const timeLeft = moment.duration(gameDate.getTime() - new Date().getTime()); 
+        if (timeLeft > 0 && timeLeft < moment.duration(1, 'days')) return true;
+        return false;
+    }
+
     return (
         <div className="game-tab-container" style={{ marginBottom: "30px" }}>
             {!isAvailableGame ?
@@ -359,7 +363,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                     <div style={{ "paddingBottom": "10px", backgroundColor: status === 'Final' ? "#E3C600" : status === 'Shitty' ? "#DDDDDD" : "" }}>
                         {getFlagIcon()}
                         <br></br>
-                        {new Date().getDate() === date.getDate() ? gameTimer() : undefined}
+                        {needToShowTimer({gameDate: date}) ? gameTimer() : undefined}
                         {getDateTime()}
                         {
                             info !== undefined &&

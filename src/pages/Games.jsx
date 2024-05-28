@@ -6,10 +6,10 @@ import euroLogo from "../images/euro-logo.svg"
 
 
 function Games(prop) {
-  const {setModalContent, setOpen, modalState} = prop;
+  const {setModalContent, setOpen} = prop;
   const [reFetch, setReFetch] = useState('');
   // const [userBets, setUserBets] = useStat e();
-  const [showGroupGames, setShowGroupGames] = useState(false);
+  const [showGroupGames, setShowGroupGames] = useState(true);
   // const [showEighthGames, setShowEightGames] = useState(false);
   // const [showQuarterGames, setShowQuarterGames] = useState(false);
   // const [showSemiGames, setShowSemiGames] = useState(false);
@@ -99,8 +99,8 @@ function Games(prop) {
   return (
 
     <>
-      <div style={{ textAlign: "center"}}>
-        <img src={euroLogo} />
+      <div style={{ textAlign: "center", marginTop: "4vh" }}>
+          <img src={euroLogo} />
       </div>
       <h2 className='pageTitle' style={{ padding: "20px" }}>Matches</h2>
       <div className='games'>

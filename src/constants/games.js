@@ -254,7 +254,14 @@ export const games =
             id: 1,
             teamA: "Germany",
             teamB: "Scotland",
-            date: new Date(2024, 3, 28, 21),
+            date: new Date(2024, 4, 28, 21,17),
+            status: GAME_STATUS.TBD
+        },
+        {
+            id: 2,
+            teamA: "Hungary",
+            teamB: "Switzerland",
+            date: new Date(2024, 4, 29, 22),
             status: GAME_STATUS.TBD
         },
   

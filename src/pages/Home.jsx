@@ -108,7 +108,6 @@ function Home() {
   
   return (
     <>
-      {/* <h1 className='pageTitle'>World Cup 2022</h1> */}
       <div style={{ textAlign: "center", marginTop: "4vh" }}> 
         <img src={euroLogo}/>
       </div>
