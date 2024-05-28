@@ -1,0 +1,51 @@
+.game-tab-container {
+    /* padding: 50px; */
+    width: 80%;
+    /* border: 1px solid black; */
+    display: block;
+    /* margin: 15px; */
+    /* margin-top: 15px; */
+    background-color: #f4f8fc;
+    border-radius: 9px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    justify-content: center;
+}
+
+#game-tab-overlay {
+    position: relative; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.1); /* Black background with opacity */
+    border-radius: 9px;
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+.bet-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#left-bet {
+    margin-right: 10px;
+    width: 100px;
+}
+
+#right-bet {
+    width: 100px;
+}
+
+#bet-button {
+    padding: 10px 30px 10px 30px;
+}
+
+.bet-button {
+    transition-duration: 0.4s;
+}
+  

@@ -1,38 +1,103 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Assistant&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Assistant', sans-serif;
+}
+  
+.home,
+.games {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  /* justify-content: center; */
+  font-size: 1rem;
+  text-align: center;
+  /* overflow: scroll; */
+}
+
+.rank {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.rank-table {
+  margin-top: 75px;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin: 0 auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.rank-table thead tr {
+  background-color: #202649;
+  color: #ffffff;
+  /* text-align: left; */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.rank-table th,
+.rank-table td {
+    padding: 12px 15px;
 }
 
-.App-link {
-  color: #61dafb;
+.rank-table tbody tr {
+  border-bottom: 1px solid #dddddd;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.rank-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.rank-table tbody tr:last-of-type {
+  border-bottom: 2px solid #202649;
+}
+
+.rank-table tbody tr.active-row {
+  font-weight: bold;
+  color: #202649;
+}
+
+.rank-table-tab {
+  text-align: center;
+  padding: 0px;
+  min-width: 250px;
+}
+
+.rank-table-tab th,
+.rank-table-tab td {
+    padding: 0px;
+    width: 125px
+}
+
+.pageTitle {
+  padding-top: 50px;
+  text-align: center;
+}
+
+.table-games {
+  border: 1px black solid;
+}
+
+.table-row-games {
+  border: 1px black solid;
+}
+
+.table-row-cell {
+  border: 1px black solid;
+  padding: 4px;
+}
+
+.home-page-content {
+  border: 2px solid black;
+  padding: 10px 0px 10px 0px;
+  margin: 100px 30px 0px 30px;
+  text-align: center;
 }
