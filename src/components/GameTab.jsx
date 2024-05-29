@@ -31,7 +31,9 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
 
     const betRecivedContent = () => {
         return (
-            <div style={{
+            <div 
+                key={id}
+                style={{
                 "display": "flex",
                 "alignContent": "center",
                 "flexDirection": "column",
@@ -237,7 +239,8 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
         try {
             // let response = await fetch(`https://wc2022-server-k330-main-y62tkictza-wm.a.run.app/get-bets/${id}`);
             let response = await fetch(`http://127.0.0.1:5000/get-bets/${id}`);
-            let response_data = response.json()
+            console.log(teamA, teamB)
+            response.json()
                 .then((data) => {
                     setModalContent(getGameTable(data?.game_bets), `${teamA} - ${teamB}`);
                     setModalOpen(true);
@@ -283,11 +286,13 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                     Array.isArray(realGames) && realGames.map((game, index) => {
                         if (game.id === id && game.scoreA !== undefined && game.scoreB !== undefined) {
                             const gamePoints = getMatchPoints(game.scoreA, game.scoreB);
-                            return <>
-                                <h3 key={index}>{game.scoreA} - {game.scoreB}</h3>
-                                {gamePoints !== undefined ? <h4>{gamePoints}</h4> : undefined}
+                            return (
 
-                            </>
+                                <div key={index}>
+                                    <h3>{game.scoreA} - {game.scoreB}</h3>
+                                    {gamePoints !== undefined ? <h4>{gamePoints}</h4> : undefined}
+                                </div>
+                            ) 
                         }
                     })
                 }

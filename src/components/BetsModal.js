@@ -5,20 +5,14 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
 
-export default function Modal(props) {
-  const theme = useTheme();
+export default function BetsModal(props) {
+  console.log("🚀 ~ BetsModal ~ props:", props)
   const {open, setOpen, onClose, modalTitle, modalText} = props;
-
-  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-
 
   return (
     <div>
       <Dialog
-        // fullScreen={fullScreen}
         open={open}
         onClose={onClose}
         aria-labelledby="responsive-dialog-title"

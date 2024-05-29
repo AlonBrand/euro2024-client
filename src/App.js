@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar";
-import Modal from "./components/Modal";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import BetsModal from "./components/BetsModal";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Games from "./pages/Games";
 import Rank from "./pages/Rank";
@@ -9,9 +9,9 @@ import { useEffect, useState } from "react";
 
 function App() {
     const [open, setOpen] = useState(false);
-    const [modalText, setModalText] = useState(false);
-    const [modalTitle, setModalTitle] = useState(false);
-    const setModalContent = (modalText, modalTitle) => {
+    const [modalText, setModalText] = useState("");
+    const [modalTitle, setModalTitle] = useState("");
+    const setModalContent = (modalText) => {
         setModalText(modalText);
         setModalTitle(modalTitle);
     }
@@ -20,14 +20,14 @@ function App() {
     }
 
     const getCookieName = () => {
-        return true;
-        // if(document.cookie) return JSON.parse(document.cookie?.substring(5));
+        if(document.cookie) return JSON.parse(document.cookie?.substring(5));
     }
 
     const [isConnected, setIsConnected] = useState();
 
     useEffect(() => {
         const cookie_value = getCookieName();
+        console.log("🚀 ~ useEffect ~ cookie_value:", cookie_value)
         if (cookie_value) {
             setIsConnected(true);
             window.USER_ID = cookie_value["user_id"];
@@ -36,7 +36,7 @@ function App() {
 
     return (
         <div className="App">
-            <Modal open={open} onClose={onCloseModal} modalTitle={modalTitle} modalText={modalText} />
+            <BetsModal open={open} onClose={onCloseModal} modalTitle={modalTitle} modalText={modalText} />
             <Navbar isConnected={isConnected} setIsConnected={setIsConnected} getCookieName={getCookieName} />
             <Routes>
                 <Route path="/" exact element={<Home />}></Route>

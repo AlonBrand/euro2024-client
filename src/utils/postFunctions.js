@@ -1,7 +1,7 @@
 
 
 export const postSignUp = async ({ name, password, updateConnectedUserName, setIsConnect, closeModal, setPostInProgress }) => {
-    setPostInProgress(() => true);
+    setPostInProgress(true);
     const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -13,21 +13,21 @@ export const postSignUp = async ({ name, password, updateConnectedUserName, setI
         response.json()
             .then((data) => {
                 console.log(data)
-                setPostInProgress(() => false);
-                if (data?.msg === 'UNIQUE constraint failed: Users.name') {
-                    const element = document.getElementById("login-placeHolder");
-                    element.innerHTML = '<h5> User name already exist! </h5>';
-                }
-                else if (data?.msg === 'User Connected') {
+                setPostInProgress(false);
+                if (data?.success) {
                     const cookie_object = {
                         user_name: data?.user_name,
                         user_id: data?.user_id
                     }
-                    document.cookie = `name=${JSON.stringify(cookie_object)}; expires=${new Date(2023, 11, 11).toUTCString()}`
+                    document.cookie = `name=${JSON.stringify(cookie_object)}; expires=${new Date(2024, 11, 30).toUTCString()}`
                     window.USER_ID = data?.user_id;
                     updateConnectedUserName(`Hi, ${data?.user_name}`)
                     setIsConnect(() => true);
                     closeModal();
+                }
+                if (data?.msg) {
+                    const element = document.getElementById("login-placeHolder");
+                    element.innerHTML = data?.msg;
                 }
             });
     } catch (e) {
@@ -48,24 +48,22 @@ export const postLogIn = async ({ name, password, updateConnectedUserName, setIs
         let response = await fetch("http://127.0.0.1:5000/log-in", requestOptions);
         response.json()
             .then((data) => {
+                console.log("🚀Hiiiiiiiiiiiiiii")
                 setPostInProgress(() => false);
-                console.log(data)
-                console.log(data?.msg)
-                if (data?.msg === 'User connected') {
+                if (data?.connect) {
                     const cookie_object = {
                         user_name: data?.user_name,
                         user_id: data?.user_id
                     }
                     document.cookie = `name=${JSON.stringify(cookie_object)}; expires=${new Date(2023, 11, 11).toUTCString()}`
-                    console.log(document.cookie)
                     window.USER_ID = data?.user_id;
                     updateConnectedUserName(`Hi, ${data?.user_name}`);
                     setIsConnect(() => true);
                     closeModal()
                 }
-                else if (data?.msg === "Wrong user name or password!") {
+                else if (data?.msg) {
                     const element = document.getElementById("login-placeHolder");
-                    element.innerHTML = '<h5>Wrong user name or password!</h5>';
+                    element.innerHTML = `<h5>${data?.msg}</h5>`;
                 }
             });
     } catch (e) {

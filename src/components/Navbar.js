@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import { IconContext } from "react-icons";
@@ -23,7 +23,7 @@ function Navbar(props) {
         if(cookie) {
             setUserName(`Hi, ${props.getCookieName()["user_name"]}`)
         }
-    }, [])
+    }, [props])
 
     const showSideBar = () => {
         setSideBar(!sidebar);
@@ -31,7 +31,7 @@ function Navbar(props) {
 
     const handleSignUp = () => {
         setModalTitle("Sign-up");
-        // setModalIsOpen(true);
+        setModalIsOpen(true);
     };
 
     const handleLogIn = () => {

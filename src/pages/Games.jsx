@@ -76,7 +76,7 @@ function Games(prop) {
             // if((diffTime > 0 && diffTime > (1000 * 60 * 60 * 15)) && !showEighthGames) return;
             return(
                 <GameTab 
-                    key={game.id} 
+                    key={`${game.id}-${index}`} 
                     id={game.id} 
                     teamA={game.teamA} 
                     teamB={game.teamB} 
