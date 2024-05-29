@@ -23,6 +23,7 @@ export default function Modal(props) {
         onClose={onClose}
         aria-labelledby="responsive-dialog-title"
       >
+        <Button variant="outlined">{modalTitle}</Button>
         <DialogTitle id="responsive-dialog-title" style={{"textAlign":"center"}}>
           {modalTitle}
         </DialogTitle>
