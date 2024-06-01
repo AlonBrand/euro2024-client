@@ -16,14 +16,14 @@ function Games(prop) {
   // const [showFinalGames, setShowFinalGames] = useState(true);
   const [bets, setBets] = useState();
   const [realGames, setRealGames] = useState();
+  const apiUrl = process.env.REACT_APP_API_URL;
   
   useEffect(() => {
       const getUserBets = () => {
           try{
                 const tempBets = [];
                 const tempGames = [];
-                // fetch(`https://wc2022-server-k330-main-y62tkictza-wm.a.run.app/userBets/${window.USER_ID}`)
-                fetch(`http://127.0.0.1:5000/userBets/${window.USER_ID}`)
+                fetch(`${apiUrl}/userBets/${window.USER_ID}`)
                 .then((response) => response.json()
                 .then((data) => {
                   // const sortedData = data?.userBets?.sort((a, b)=>a[2] - b[2]);
@@ -51,7 +51,7 @@ function Games(prop) {
           }
       }
       getUserBets();
-  }, [reFetch]);
+  }, [reFetch, apiUrl]);
 
   const toggleShowGroupMatches = () => setShowGroupGames((prevShow)=>!prevShow)
   // const toggleShowEighthFinal = () => setShowEightGames((prevShow)=>!prevShow)
@@ -67,7 +67,7 @@ function Games(prop) {
           Object.values(curr_games)?.map((game, index) => {
             // const curr_date = new Date();
             // const diffTime = curr_date - game?.date;
-            if(game.status === "FINISHED" && !showGroupGames) return;
+            if(game.status === "FINISHED" && !showGroupGames) return null;
             // if(game.status === "Eighth" && !showEighthGames) return;
             // if(game.status === "Quarter" && !showQuarterGames) return;
             // if(game.status === "Semi" && !showSemiGames) return;
@@ -100,7 +100,7 @@ function Games(prop) {
 
     <>
       <div style={{ textAlign: "center", marginTop: "4vh" }}>
-          <img src={euroLogo} />
+          <img alt='' src={euroLogo} />
       </div>
       <h2 className='pageTitle' style={{ padding: "20px" }}>Matches</h2>
       <div className='games'>

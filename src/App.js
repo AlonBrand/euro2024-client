@@ -9,10 +9,10 @@ import { useEffect, useState } from "react";
 
 function App() {
     const [open, setOpen] = useState(false);
-    const [modalText, setModalText] = useState("");
+    const [modalContent, setmodalContent] = useState();
     const [modalTitle, setModalTitle] = useState("");
-    const setModalContent = (modalText) => {
-        setModalText(modalText);
+    const setModalContent = (modalContent) => {
+        setmodalContent(modalContent);
         setModalTitle(modalTitle);
     }
     const onCloseModal = () => {
@@ -36,7 +36,7 @@ function App() {
 
     return (
         <div className="App">
-            <BetsModal open={open} onClose={onCloseModal} modalTitle={modalTitle} modalText={modalText} />
+            <BetsModal open={open} onClose={onCloseModal} modalTitle={modalTitle} modalContent={modalContent} />
             <Navbar isConnected={isConnected} setIsConnected={setIsConnected} getCookieName={getCookieName} />
             <Routes>
                 <Route path="/" exact element={<Home />}></Route>

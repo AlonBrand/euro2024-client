@@ -5,13 +5,13 @@ import "../App.css";
 
 function Rank() {
     const [users, setUsers] = useState();
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const getUsers = () => {
             try {
                 if (users === undefined) {
-                    // fetch("https://wc2022-server-k330-main-y62tkictza-wm.a.run.app/users")
-                    fetch("http://127.0.0.1:5000/users")
+                    fetch(`${apiUrl}/users`)
                         .then((response) => response.json()
                             .then((data) => {
                                 console.log(data)
@@ -29,12 +29,12 @@ function Rank() {
             }
         }
         getUsers();
-    }, []);
+    }, [users, apiUrl]);
 
     return (
         <div className="rank">
             <div style={{ textAlign: "center", marginTop: "4vh" }}>
-                <img src={euroLogo} />
+                <img alt="" src={euroLogo} />
             </div>
             <h1 style={{ "paddingTop": "20px", "paddingBottom": "20px" }}>Tournament Table</h1>
             {

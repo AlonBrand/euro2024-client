@@ -20,6 +20,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
     const [timerAlert, setTimerAlert] = useState(true);
     const [isAvailableGame, setIsAvailableGame] = useState(new Date() < date);
     const [betInProgress, setBetInProgress] = useState(false);
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         return clearInterval(interval_id);
@@ -67,8 +68,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
         };
         try {
             setBetInProgress(true);
-            let response = await fetch("http://127.0.0.1:5000/games/bet-on-game", requestOptions);
-            // let response = await fetch("https://wc2022-server-k330-main-y62tkictza-wm.a.run.app/games/bet-on-game", requestOptions);
+            let response = await fetch(`${apiUrl}/games/bet-on-game`, requestOptions);
             let response_data = response.json()
                 .then((data) => console.log(data));
             setBetInProgress(false);
@@ -99,8 +99,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
             body: JSON.stringify({ gameId: id, teamA: teamA, teamB: teamB, scoreA: realScoreA, scoreB: realScoreB, status: status }),
         };
         try {
-            // let response = await fetch("https://wc2022-server-k330-main-y62tkictza-wm.a.run.app/games/bet-real-score", requestOptions);
-            let response = await fetch("http://127.0.0.1:5000/games/bet-real-score", requestOptions);
+            let response = await fetch(`${apiUrl}/games/bet-real-score`, requestOptions);
             let response_data = response.json()
                 .then((data) => console.log(data));
             // updateConnectedUserName(`Hi, ${response_data?.msg}`)
@@ -237,8 +236,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
 
     const showGameBets = async () => {
         try {
-            // let response = await fetch(`https://wc2022-server-k330-main-y62tkictza-wm.a.run.app/get-bets/${id}`);
-            let response = await fetch(`http://127.0.0.1:5000/get-bets/${id}`);
+            let response = await fetch(`${apiUrl}/get-bets/${id}`);
             console.log(teamA, teamB)
             response.json()
                 .then((data) => {

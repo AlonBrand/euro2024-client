@@ -53,7 +53,7 @@ export default function LoginModal({ modalIsOpen, closeModal, handleSubmit, hand
                     </>
                     :
                     <div style={{ textAlign: "center" }}>
-                        <h4 style={{ marginBottom: "20px" }}>Are you sure you want to log out?</h4>
+                        <h3 style={{ marginBottom: "20px" }}>Are you sure you want to log out?</h3>
                         <Button variant="outlined" style={{ marginRight: "10px", width: "100px", height: "50px" }} onClick={handleLogOut}>Yes</Button>
                         <Button variant="outlined" style={{ marginLeft: "10px", width: "100px", height: "50px" }} onClick={handleCancelLogOut}>No</Button>
                     </div>

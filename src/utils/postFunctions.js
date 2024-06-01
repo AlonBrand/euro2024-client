@@ -1,4 +1,4 @@
-
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const postSignUp = async ({ name, password, updateConnectedUserName, setIsConnect, closeModal, setPostInProgress }) => {
     setPostInProgress(true);
@@ -8,8 +8,7 @@ export const postSignUp = async ({ name, password, updateConnectedUserName, setI
         body: JSON.stringify({ name: name, password: password }),
     };
     try {
-        // let response = await fetch("https://wc2022-server-k330-main-y62tkictza-wm.a.run.app/sign-up", requestOptions);
-        let response = await fetch("http://127.0.0.1:5000/sign-up", requestOptions);
+        let response = await fetch(`${apiUrl}/sign-up`, requestOptions);
         response.json()
             .then((data) => {
                 console.log(data)
@@ -44,11 +43,9 @@ export const postLogIn = async ({ name, password, updateConnectedUserName, setIs
         body: JSON.stringify({ name: name, password: password }),
     };
     try {
-        // let response = await fetch("https://wc2022-server-k330-main-y62tkictza-wm.a.run.app/log-in", requestOptions);
-        let response = await fetch("http://127.0.0.1:5000/log-in", requestOptions);
+        let response = await fetch(`${apiUrl}/log-in`, requestOptions);
         response.json()
             .then((data) => {
-                console.log("🚀Hiiiiiiiiiiiiiii")
                 setPostInProgress(() => false);
                 if (data?.connect) {
                     const cookie_object = {
@@ -79,7 +76,7 @@ export const postSideBet = async ({ winnigTeam, topScorer }) => {
         body: JSON.stringify({ winnigTeam: winnigTeam, topScorer: topScorer, user: window.USER_ID }),
     };
     try {
-        const response = await fetch("http://127.0.0.1:5000/side_bet", requestOptions);
+        const response = await fetch(`${apiUrl}/side_bet`, requestOptions);
         console.log(response);
     } catch (e) {
         console.log(e);

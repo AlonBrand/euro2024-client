@@ -3,12 +3,11 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
+// import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 export default function BetsModal(props) {
-  console.log("🚀 ~ BetsModal ~ props:", props)
-  const {open, setOpen, onClose, modalTitle, modalText} = props;
+  const {open, onClose, modalTitle, modalContent} = props;
 
   return (
     <div>
@@ -22,9 +21,9 @@ export default function BetsModal(props) {
           {modalTitle}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText>
-           {modalText}
-          </DialogContentText>
+          {/* <DialogContentText> */}
+           {modalContent}
+          {/* </DialogContentText> */}
         </DialogContent>
         <DialogActions >
           <Button onClick={onClose} autoFocus >

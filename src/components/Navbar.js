@@ -30,12 +30,12 @@ function Navbar(props) {
     };
 
     const handleSignUp = () => {
-        setModalTitle("Sign-up");
+        setModalTitle("Sign Up");
         setModalIsOpen(true);
     };
 
     const handleLogIn = () => {
-        setModalTitle("Log-in");
+        setModalTitle("Log In");
         setModalIsOpen(true);
     }
 

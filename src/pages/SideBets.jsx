@@ -8,14 +8,14 @@ function SideBets() {
     const [winningTeam, setWinningTeam] = useState();
     const [topScorer, setTopScorrer] = useState();
     const isAvailableGame = (new Date() - new Date(2024, 5, 28, 21)) < 0;
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     const [sideBets, setSideBets] = useState();
     useEffect(() => {
         const getSideBets = () => {
             try {
                 if (sideBets === undefined) {
-                    // fetch("https://wc2022-server-k330-main-y62tkictza-wm.a.run.app/get-side-bets")
-                    fetch("http://127.0.0.1:5000/get-side-bets")
+                    fetch(`${apiUrl}/get-side-bets`)
                         .then((response) => response.json()
                             .then((data) => {
                                 // console.log(data)
@@ -28,7 +28,7 @@ function SideBets() {
             }
         }
         getSideBets();
-    }, []);
+    }, [sideBets]);
 
 
     const winningTeamOptions = [
@@ -110,7 +110,7 @@ function SideBets() {
     return (
         <div>
             <div style={{ textAlign: "center", marginTop: "4vh" }}>
-                <img src={euroLogo} />
+                <img alt='' src={euroLogo} />
             </div>
             <h1 style={{ "textAlign": "center", "paddingTop": "20px", "paddingBottom": "20px" }}>Side Bets</h1>
             <div style={{ margin: "0px 20px 20px 20px" }} className="side-bets">
