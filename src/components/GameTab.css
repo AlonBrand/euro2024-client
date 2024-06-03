@@ -48,4 +48,10 @@
 .bet-button {
     transition-duration: 0.4s;
 }
-  
+
+.bet-input {
+    border: black solid 1px;
+    height: 30px;
+    text-align: center;
+    border-radius: 4%;
+}

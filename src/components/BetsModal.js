@@ -3,11 +3,9 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-// import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 
 export default function BetsModal(props) {
-  const {open, onClose, modalTitle, modalContent} = props;
+  const { open, onClose, modalTitle, modalContent } = props;
 
   return (
     <div>
@@ -16,17 +14,15 @@ export default function BetsModal(props) {
         onClose={onClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <Button variant="outlined">{modalTitle}</Button>
-        <DialogTitle id="responsive-dialog-title" style={{"textAlign":"center"}}>
-          {modalTitle}
-        </DialogTitle>
-        <DialogContent>
-          {/* <DialogContentText> */}
-           {modalContent}
-          {/* </DialogContentText> */}
+        <DialogContent >
+          {modalContent}
         </DialogContent>
         <DialogActions >
-          <Button onClick={onClose} autoFocus >
+          <Button style={{
+            margin: 'auto', // Align center horizontally
+            display: 'block', // Ensure it takes the full width
+            fontSize: '1.2rem', // Increase font size
+          }} onClick={onClose} autoFocus >
             Ok
           </Button>
         </DialogActions>

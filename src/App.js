@@ -40,12 +40,12 @@ function App() {
             <Navbar isConnected={isConnected} setIsConnected={setIsConnected} getCookieName={getCookieName} />
             <Routes>
                 <Route path="/" exact element={<Home />}></Route>
-                {/* <Route path="/games" element={window.USER_ID ? <Games setModalContent={setModalContent} setOpen={setOpen} modalState={open} onCloseModal={onCloseModal} /> : <Home />}></Route>
+                <Route path="/games" element={window.USER_ID ? <Games setModalContent={setModalContent} setOpen={setOpen} modalState={open} onCloseModal={onCloseModal} /> : <Home />}></Route>
                 <Route path="/table" element={window.USER_ID ? <Rank /> : <Home />}></Route>
-                <Route path="/side-bets" element={window.USER_ID ? <SideBets /> : <Home />}></Route> */}
-                <Route path="/games" element={<Games setModalContent={setModalContent} setOpen={setOpen} modalState={open} onCloseModal={onCloseModal} />}></Route>
+                <Route path="/side-bets" element={window.USER_ID ? <SideBets /> : <Home />}></Route>
+                {/* <Route path="/games" element={<Games setModalContent={setModalContent} setOpen={setOpen} modalState={open} onCloseModal={onCloseModal} />}></Route>
                 <Route path="/table" element={<Rank />}></Route>
-                <Route path="/side-bets" element={<SideBets />}></Route>
+                <Route path="/side-bets" element={<SideBets />}></Route> */}
             </Routes>
         </div>
 

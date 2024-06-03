@@ -67,7 +67,7 @@ function Games(prop) {
           Object.values(curr_games)?.map((game, index) => {
             // const curr_date = new Date();
             // const diffTime = curr_date - game?.date;
-            if(game.status === "FINISHED" && !showGroupGames) return null;
+            if(game.status === "Groups" && !showGroupGames) return null;
             // if(game.status === "Eighth" && !showEighthGames) return;
             // if(game.status === "Quarter" && !showQuarterGames) return;
             // if(game.status === "Semi" && !showSemiGames) return;

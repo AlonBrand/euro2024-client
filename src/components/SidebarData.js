@@ -7,25 +7,25 @@ export const SidebarData = [
     {
         title: 'Home',
         path: '/',
-        icon: <AiIcons.AiFillHome />,
+        icon: <AiIcons.AiFillHome size={28}/>,
         className: 'nav-text'
     },
     {
-        title: 'Matches',
+        title: 'Games',
         path: '/games',
-        icon: <IoIcons.IoIosPaper />,
+        icon: <IoIcons.IoIosPaper size={28}/>,
         className: 'nav-text'
     },
     {
         title: 'Side Bets',
         path: '/side-bets',
-        icon: <BsIcons.BsCash />,
+        icon: <BsIcons.BsCash size={28}/>,
         className: 'nav-text'
     },
     {
         title: 'Table',
         path: '/table',
-        icon: <AiIcons.AiOutlineTrophy />,
+        icon: <AiIcons.AiOutlineTrophy size={28}/>,
         className: 'nav-text'
     }   
 ]

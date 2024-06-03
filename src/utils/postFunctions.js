@@ -46,16 +46,16 @@ export const postLogIn = async ({ name, password, updateConnectedUserName, setIs
         let response = await fetch(`${apiUrl}/log-in`, requestOptions);
         response.json()
             .then((data) => {
-                setPostInProgress(() => false);
+                setPostInProgress(false);
                 if (data?.connect) {
                     const cookie_object = {
                         user_name: data?.user_name,
                         user_id: data?.user_id
                     }
-                    document.cookie = `name=${JSON.stringify(cookie_object)}; expires=${new Date(2023, 11, 11).toUTCString()}`
+                    document.cookie = `name=${JSON.stringify(cookie_object)}; expires=${new Date(2024, 11, 11).toUTCString()}`
                     window.USER_ID = data?.user_id;
                     updateConnectedUserName(`Hi, ${data?.user_name}`);
-                    setIsConnect(() => true);
+                    setIsConnect(true);
                     closeModal()
                 }
                 else if (data?.msg) {

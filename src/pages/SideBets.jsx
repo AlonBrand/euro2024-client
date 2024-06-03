@@ -11,6 +11,7 @@ function SideBets() {
     const apiUrl = process.env.REACT_APP_API_URL;
 
     const [sideBets, setSideBets] = useState();
+    console.log("🚀 ~ SideBets ~ sideBets:", sideBets)
     useEffect(() => {
         const getSideBets = () => {
             try {
@@ -104,7 +105,6 @@ function SideBets() {
         setTopScorrer(() => e?.label)
     }
 
-
     const disableSend = () => winningTeam === undefined || topScorer === undefined || (isAvailableGame === false);
 
     return (
@@ -133,7 +133,7 @@ function SideBets() {
                 </div>
             </div>
             {
-                sideBets !== undefined &&
+                (sideBets !== undefined && sideBets.length > 0) &&
                 <table className="rank-table" style={{ marginBottom: "50px", textAlign: "center" }}>
                     <thead>
                         <tr>

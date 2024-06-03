@@ -48,9 +48,9 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                 <div>
                     <img src={checkmark} />
                 </div>
-                <div>
-                    Your bet has received! <br />
-                    Good luck!
+                <div style={{paddingTop: "1vh"}}>
+                    Got your bet! <br />
+                    Good luck bro!
                 </div>
 
             </div>
@@ -100,7 +100,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
         };
         try {
             let response = await fetch(`${apiUrl}/games/bet-real-score`, requestOptions);
-            let response_data = response.json()
+            response.json()
                 .then((data) => console.log(data));
             // updateConnectedUserName(`Hi, ${response_data?.msg}`)
         } catch (e) {
@@ -377,8 +377,8 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                         <br></br>
                         <form onSubmit={(e) => { e.preventDefault(); betOnGame() }}>
                             <div className="bet-line">
-                                <input id="left-bet" style={{ height: "30px", textAlign: "center" }} type="tel" placeholder={teamA} onChange={(e) => setScoreA(e.target.value)}></input>
-                                <input id="right-bet" style={{ height: "30px", textAlign: "center" }} type="tel" placeholder={teamB} onChange={(e) => setScoreB(e.target.value)}></input>
+                                <input id="left-bet"  className="bet-input" type="tel" placeholder={teamA} onChange={(e) => setScoreA(e.target.value)}></input>
+                                <input id="right-bet" className="bet-input" type="tel" placeholder={teamB} onChange={(e) => setScoreB(e.target.value)}></input>
                             </div>
                             <br></br>
                             {

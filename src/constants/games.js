@@ -243,28 +243,261 @@ export const flagsPaths = {
     "Zimbabwe":"ZW"
 }
 
-const GAME_STATUS = {
-    TBD: 0,
-    DONE: 1
-}
 
 export const games =
-    [
-        {
-            id: 1,
-            teamA: "Germany",
-            teamB: "Scotland",
-            date: new Date(2024, 4, 28, 21,17),
-            status: GAME_STATUS.TBD
-        },
-        {
-            id: 2,
-            teamA: "Hungary",
-            teamB: "Switzerland",
-            date: new Date(2024, 4, 29, 22),
-            status: GAME_STATUS.TBD
-        },
-  
+[
+    {
+        "id": 1,
+        "teamA": "Germany",
+        "teamB": "Scotland",
+        "date": new Date(2024, 5, 14, 22, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 2,
+        "teamA": "Hungary",
+        "teamB": "Switzerland",
+        "date": new Date(2024, 5, 15, 16, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 3,
+        "teamA": "Spain",
+        "teamB": "Croatia",
+        "date": new Date(2024, 5, 15, 19, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 4,
+        "teamA": "Italy",
+        "teamB": "Albania",
+        "date": new Date(2024, 5, 15, 21, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 5,
+        "teamA": "Poland",
+        "teamB": "Netherlands",
+        "date": new Date(2024, 5, 16, 16, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 6,
+        "teamA": "Slovenia",
+        "teamB": "Denmark",
+        "date": new Date(2024, 5, 16, 19, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 7,
+        "teamA": "Serbia",
+        "teamB": "England",
+        "date": new Date(2024, 5, 16, 22, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 8,
+        "teamA": "Romania",
+        "teamB": "Ukraine",
+        "date": new Date(2024, 5, 17, 16, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 9,
+        "teamA": "Belgium",
+        "teamB": "Slovakia",
+        "date": new Date(2024, 5, 17, 19, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 10,
+        "teamA": "Austria",
+        "teamB": "France",
+        "date": new Date(2024, 5, 17, 22, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 11,
+        "teamA": "Turkey",
+        "teamB": "Georgia",
+        "date": new Date(2024, 5, 18, 19, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 12,
+        "teamA": "Portugal",
+        "teamB": "Czech Republic",
+        "date": new Date(2024, 5, 18, 22, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 13,
+        "teamA": "Croatia",
+        "teamB": "Albania",
+        "date": new Date(2024, 5, 19, 16, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 14,
+        "teamA": "Germany",
+        "teamB": "Hungary",
+        "date": new Date(2024, 5, 19, 19, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 15,
+        "teamA": "Scotland",
+        "teamB": "Switzerland",
+        "date": new Date(2024, 5, 19, 22, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 16,
+        "teamA": "Slovenia",
+        "teamB": "Serbia",
+        "date": new Date(2024, 5, 20, 16, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 17,
+        "teamA": "Denmark",
+        "teamB": "England",
+        "date": new Date(2024, 5, 20, 19, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 18,
+        "teamA": "Spain",
+        "teamB": "Italy",
+        "date": new Date(2024, 5, 20, 22, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 19,
+        "teamA": "Slovakia",
+        "teamB": "Ukraine",
+        "date": new Date(2024, 5, 21, 16, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 20,
+        "teamA": "Poland",
+        "teamB": "Austria",
+        "date": new Date(2024, 5, 21, 19, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 21,
+        "teamA": "Netherlands",
+        "teamB": "France",
+        "date": new Date(2024, 5, 21, 22, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 22,
+        "teamA": "Georgia",
+        "teamB": "Czech Republic",
+        "date": new Date(2024, 5, 22, 16, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 23,
+        "teamA": "Turkey",
+        "teamB": "Portugal",
+        "date": new Date(2024, 5, 22, 19, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 24,
+        "teamA": "Belgium",
+        "teamB": "Romania",
+        "date": new Date(2024, 5, 22, 22, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 25,
+        "teamA": "Switzerland",
+        "teamB": "Germany",
+        "date": new Date(2024, 5, 23, 22, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 26,
+        "teamA": "Scotland",
+        "teamB": "Hungary",
+        "date": new Date(2024, 5, 23, 22, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 27,
+        "teamA": "Albania",
+        "teamB": "Spain",
+        "date": new Date(2024, 5, 24, 22, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 28,
+        "teamA": "Croatia",
+        "teamB": "Italy",
+        "date": new Date(2024, 5, 24, 22, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 29,
+        "teamA": "France",
+        "teamB": "Poland",
+        "date": new Date(2024, 5, 25, 19, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 30,
+        "teamA": "Netherlands",
+        "teamB": "Austria",
+        "date": new Date(2024, 5, 25, 19, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 31,
+        "teamA": "England",
+        "teamB": "Slovenia",
+        "date": new Date(2024, 5, 25, 22, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 32,
+        "teamA": "Denmark",
+        "teamB": "Serbia",
+        "date": new Date(2024, 5, 25, 22, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 33,
+        "teamA": "Slovakia",
+        "teamB": "Romania",
+        "date": new Date(2024, 5, 26, 19, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 34,
+        "teamA": "Ukraine",
+        "teamB": "Belgium",
+        "date": new Date(2024, 5, 26, 19, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 35,
+        "teamA": "Georgia",
+        "teamB": "Portugal",
+        "date": new Date(2024, 5, 26, 22, 0),
+        "status": "Groups"
+    },
+    {
+        "id": 36,
+        "teamA": "Czech Republic",
+        "teamB": "Turkey",
+        "date": new Date(2024, 5, 26, 22, 0),
+        "status": "Groups"
+    }
 ]
 
 // export const eighthGames = [

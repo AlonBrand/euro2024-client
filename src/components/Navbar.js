@@ -61,7 +61,7 @@ function Navbar(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if(modalTitle === "Sign-up"){
+        if(modalTitle === "Sign Up"){
             postSignUp({
                 name: event.target.name.value,
                 password: event.target.password.value,
