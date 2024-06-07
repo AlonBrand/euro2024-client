@@ -9,6 +9,9 @@ export const postSignUp = async ({ name, password, updateConnectedUserName, setI
     };
     try {
         let response = await fetch(`${apiUrl}/sign-up`, requestOptions);
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
         response.json()
             .then((data) => {
                 console.log(data)
@@ -30,7 +33,7 @@ export const postSignUp = async ({ name, password, updateConnectedUserName, setI
                 }
             });
     } catch (e) {
-        setPostInProgress(() => false)
+        setPostInProgress(false)
         console.log("Post sign up error =>", e);
     }
 };
@@ -44,6 +47,9 @@ export const postLogIn = async ({ name, password, updateConnectedUserName, setIs
     };
     try {
         let response = await fetch(`${apiUrl}/log-in`, requestOptions);
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
         response.json()
             .then((data) => {
                 setPostInProgress(false);
@@ -64,7 +70,7 @@ export const postLogIn = async ({ name, password, updateConnectedUserName, setIs
                 }
             });
     } catch (e) {
-        setIsConnect(() => false)
+        setIsConnect(false)
         console.log("Post log in error =>", e);
     }
 };
