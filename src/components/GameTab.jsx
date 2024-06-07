@@ -4,7 +4,6 @@ import { flagsPaths } from "../constants/games";
 import Timer from '../components/Timer/Timer';
 import checkmark from "../images/checmmark.png";
 import ReactCountryFlag from "react-country-flag"
-import { users } from "../constants/users";
 import { BiBarChart } from "react-icons/bi";
 import { useEffect } from "react";
 import moment from 'moment';
@@ -32,23 +31,23 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
 
     const betRecivedContent = () => {
         return (
-            <div 
+            <div
                 key={id}
                 style={{
-                "display": "flex",
-                "alignContent": "center",
-                "flexDirection": "column",
-                "height": "100%",
-                "alignItems": "center",
-                /* justify-content: center; */
-                "fontSize": "1rem",
-                "textAlign": "center",
-                /* overflow: scroll; */
-            }}>
+                    "display": "flex",
+                    "alignContent": "center",
+                    "flexDirection": "column",
+                    "height": "100%",
+                    "alignItems": "center",
+                    /* justify-content: center; */
+                    "fontSize": "1rem",
+                    "textAlign": "center",
+                    /* overflow: scroll; */
+                }}>
                 <div>
                     <img src={checkmark} />
                 </div>
-                <div style={{paddingTop: "1vh"}}>
+                <div style={{ paddingTop: "1vh" }}>
                     Got your bet! <br />
                     Good luck bro!
                 </div>
@@ -203,26 +202,28 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
         )
     }
 
-    const getGameTable = (data) => {
+    const getGameTable = (bets, users) => {
+        if (bets === undefined || users === undefined) return null;
         clearInterval(interval_id);
         return (
-            <table className="rank-table rank-table-tab ">
+            <table className="rank-table rank-table-tab" style={{ fontSize: '20px' }}>
                 <thead>
                     <tr>
-                        <th style={{ width: "50px" }}>Name</th>
-                        <th style={{ width: "50px" }}>Bet</th>
+                        <th >Name</th>
+                        <th >Bet</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        data?.map((betRow, index) => {
+                        bets?.map((betRow, index) => {
                             const user_id = betRow[1]
                             const score_a = betRow[3]
                             const score_b = betRow[4]
-                            if (user_id !== undefined && score_a !== undefined && score_b !== undefined) {
+                            const user = users?.filter((user) => user[0] === user_id);
+                            if (user_id !== undefined && score_a !== undefined && score_b !== undefined && user !== undefined) {
                                 return (
                                     <tr key={`${index}`}>
-                                        <td>{users[user_id]}</td>
+                                        <td>{(user[0] !== undefined) && user?.[0]?.[1]}</td>
                                         <td>{`${score_a} - ${score_b}`}</td>
                                     </tr>
                                 )
@@ -237,10 +238,10 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
     const showGameBets = async () => {
         try {
             let response = await fetch(`${apiUrl}/get-bets/${id}`);
-            console.log(teamA, teamB)
+            console.log(teamA, teamB);
             response.json()
                 .then((data) => {
-                    setModalContent(getGameTable(data?.game_bets), `${teamA} - ${teamB}`);
+                    setModalContent(getGameTable(data?.game_bets, data?.users), `${teamA} - ${teamB}`);
                     setModalOpen(true);
                 })
         } catch (e) {
@@ -290,7 +291,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                                     <h3>{game.scoreA} - {game.scoreB}</h3>
                                     {gamePoints !== undefined ? <h4>{gamePoints}</h4> : undefined}
                                 </div>
-                            ) 
+                            )
                         }
                     })
                 }
@@ -325,7 +326,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
     }
 
     const needToShowTimer = ({ gameDate }) => {
-        const timeLeft = moment.duration(gameDate.getTime() - new Date().getTime()); 
+        const timeLeft = moment.duration(gameDate.getTime() - new Date().getTime());
         if (timeLeft > 0 && timeLeft < moment.duration(1, 'days')) return true;
         return false;
     }
@@ -366,7 +367,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                     <div style={{ "paddingBottom": "10px", backgroundColor: status === 'Final' ? "#E3C600" : status === 'Shitty' ? "#DDDDDD" : "" }}>
                         {getFlagIcon()}
                         <br></br>
-                        {needToShowTimer({gameDate: date}) ? gameTimer() : undefined}
+                        {needToShowTimer({ gameDate: date }) ? gameTimer() : undefined}
                         {getDateTime()}
                         {
                             info !== undefined &&
@@ -377,7 +378,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                         <br></br>
                         <form onSubmit={(e) => { e.preventDefault(); betOnGame() }}>
                             <div className="bet-line">
-                                <input id="left-bet"  className="bet-input" type="tel" placeholder={teamA} onChange={(e) => setScoreA(e.target.value)}></input>
+                                <input id="left-bet" className="bet-input" type="tel" placeholder={teamA} onChange={(e) => setScoreA(e.target.value)}></input>
                                 <input id="right-bet" className="bet-input" type="tel" placeholder={teamB} onChange={(e) => setScoreB(e.target.value)}></input>
                             </div>
                             <br></br>

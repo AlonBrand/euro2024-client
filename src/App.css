@@ -67,13 +67,12 @@
 
 .rank-table-tab {
   text-align: center;
-  padding: 0px;
   min-width: 250px;
 }
 
 .rank-table-tab th,
 .rank-table-tab td {
-    padding: 0px;
+    padding: 5px;
     width: 125px
 }
 
