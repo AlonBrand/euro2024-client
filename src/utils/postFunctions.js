@@ -82,7 +82,7 @@ export const postSideBet = async ({ winnigTeam, topScorer }) => {
         body: JSON.stringify({ winnigTeam: winnigTeam, topScorer: topScorer, user: window.USER_ID }),
     };
     try {
-        const response = await fetch(`${apiUrl}/side_bet`, requestOptions);
+        const response = await fetch(`${apiUrl}/side_bets`, requestOptions);
         console.log(response);
     } catch (e) {
         console.log(e);

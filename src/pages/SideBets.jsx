@@ -29,7 +29,7 @@ function SideBets() {
             }
         }
         getSideBets();
-    }, [sideBets]);
+    }, [sideBets, apiUrl]);
 
     const winningTeamOptions = [
         { value: 'Albania',     label: 'Albania' },
