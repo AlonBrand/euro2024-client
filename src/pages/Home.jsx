@@ -6,17 +6,19 @@ import "../App.css";
 
 function Home() {
   const [isEmptyDay, setIsEmptyDay] = useState(true);
-  const [winningTeam, setWinningTeam] = useState()
-  const [topScorer, setTopScorer] = useState()
+  const [winningTeam, setWinningTeam] = useState();
+  const [topScorer, setTopScorer] = useState();
+  const [didFetch, setDidFetch] = useState(false);
   const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const getSideBets = () => {
       try {
-        if ((winningTeam === undefined || topScorer === undefined) && window.USER_ID !== undefined) {
+        if (!didFetch && window.USER_ID !== undefined) {
           fetch(`${apiUrl}/get-side-bets/${window.USER_ID}`)
             .then((response) => response.json()
               .then((data) => {
+                setDidFetch(true);
                 console.log(data)
                 setWinningTeam(() => data?.winningTeam)
                 setTopScorer(() => data?.topScorer)

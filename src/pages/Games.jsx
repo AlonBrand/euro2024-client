@@ -5,7 +5,6 @@ import { games} from '../constants/games';
 import euroLogo from "../images/euro-logo.svg"
 import { Pagination } from '@mui/material';
 
-
 const itemsPerPage = 5;
 
 function Games(prop) {
