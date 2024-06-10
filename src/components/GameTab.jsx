@@ -286,7 +286,6 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                         if (game.id === id && game.scoreA !== undefined && game.scoreB !== undefined) {
                             const gamePoints = getMatchPoints(game.scoreA, game.scoreB);
                             return (
-
                                 <div key={index}>
                                     <h3>{game.scoreA} - {game.scoreB}</h3>
                                     {gamePoints !== undefined ? <h4>{gamePoints}</h4> : undefined}
@@ -350,7 +349,6 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                         info !== undefined &&
                         <br></br> &&
                         <p>{info}</p>
-
                     }
                     {
                         <BiBarChart style={{ float: "right", height: "25px", width: "25px", marginRight: "10px" }} onClick={showGameBets} />
@@ -395,7 +393,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                     </div>
                 </>
             }
-            {adminCounter >= 7 &&
+            {((adminCounter % 7) == 0) &&
                 <form onSubmit={(e) => { e.preventDefault(); betRealScore() }} style={{ marginTop: "20px" }}>
                     <div className="bet-line">
                         <input id="left-bet" style={{ height: "30px", textAlign: "center" }} type="number" placeholder={teamA} onChange={(e) => setRealScoreA(e.target.value)}></input>

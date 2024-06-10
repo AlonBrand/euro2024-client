@@ -79,10 +79,10 @@ export const postSideBet = async ({ winnigTeam, topScorer }) => {
     const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ winnigTeam: winnigTeam, topScorer: topScorer, user: window.USER_ID }),
+        body: JSON.stringify({ winningTeam: winnigTeam, topScorer: topScorer, userId: window.USER_ID }),
     };
     try {
-        const response = await fetch(`${apiUrl}/side_bets`, requestOptions);
+        const response = await fetch(`${apiUrl}/side-bets`, requestOptions);
         console.log(response);
     } catch (e) {
         console.log(e);

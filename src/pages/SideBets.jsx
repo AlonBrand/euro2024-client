@@ -141,7 +141,7 @@ function SideBets() {
                     onChange={(e) => handleTopScorer(e)}
                 />
                 <div style={{ textAlign: "center", marginTop: "30px", "marginBotto": "50px" }}>
-                    <Button id="side-bet-button" variant="outlined" style={{ marginRight: "10px", width: "100px", height: "50px" }} disabled={disableSend()} onClick={postSideBet} >Send</Button>
+                    <Button id="side-bet-button" variant="outlined" style={{ marginRight: "10px", width: "100px", height: "50px" }} disabled={disableSend()} onClick={() => postSideBet({winnigTeam: winningTeam, topScorer: topScorer})} >Send</Button>
                     <div id='side-bets-placeholder'></div>
                 </div>
             </div>
