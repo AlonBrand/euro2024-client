@@ -23,7 +23,12 @@ function Games(prop) {
 
   const handleChange = (event, value) => {
     setPage(value);
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top of the page
+    const element = document.getElementById("targetElement");
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      console.error(`Element with id "targetElement" not found`);
+    }
   };
 
   const paginatedData = games?.slice((page - 1) * itemsPerPage, page * itemsPerPage);
@@ -113,7 +118,7 @@ function Games(prop) {
           <img alt='' src={euroLogo} />
       </div>
       <h2 className='pageTitle' style={{ padding: "20px" }}>Matches</h2>
-      <div className='games'>
+      <div className='games' id="targetElement">
         <div className="game-tab-container" style={{ marginBottom: "30px", padding: "10px", fontWeight: "bold" }} onClick={toggleShowGroupMatches}>
           {showGroupGames ? 'Hide Group Matches' : 'Reveal Group Matches'}
         </div>
