@@ -24,7 +24,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
 
     useEffect(() => {
         return clearInterval(interval_id);
-    }, [])
+    }, [interval_id])
 
     interval_id = setInterval(() => {
         setIsAvailableGame(new Date() < date);
@@ -46,7 +46,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                     /* overflow: scroll; */
                 }}>
                 <div>
-                    <img src={checkmark} />
+                    <img src={checkmark} alt=""/>
                 </div>
                 <div style={{ paddingTop: "1vh" }}>
                     Got your bet! <br />
@@ -69,7 +69,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
         try {
             setBetInProgress(true);
             let response = await fetch(`${apiUrl}/games/bet-on-game`, requestOptions);
-            let response_data = response.json()
+            response.json()
                 .then((data) => console.log(data));
             setBetInProgress(false);
             // updateConnectedUserName(`Hi, ${response_data?.msg}`)
@@ -229,6 +229,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                                     </tr>
                                 )
                             }
+                            return null;
                         })
                     }
                 </tbody>
@@ -258,6 +259,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                         if (bet.id === id) {
                             return bet.value
                         }
+                        return null;
                     })
                 }
             </div>
@@ -292,6 +294,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                                 </div>
                             )
                         }
+                        return null;
                     })
                 }
             </div>
@@ -318,7 +321,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                 if (serverScoreA === bet.scoreA && serverScoreB === bet.scoreB) return bull_points;
                 else if (serverScoreA > serverScoreB && bet.scoreA > bet.scoreB) return part_points;
                 else if (serverScoreB > serverScoreA && bet.scoreB > bet.scoreA) return part_points;
-                else if (serverScoreA == serverScoreB && bet.scoreA == bet.scoreB) return part_points;
+                else if (serverScoreA === serverScoreB && bet.scoreA === bet.scoreB) return part_points;
                 return '+ 0 Points';
             }
         }
@@ -403,7 +406,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                     </div>
                 </>
             }
-            {((adminCounter % 7) == 0 && adminCounter !== 0) &&
+            {(((adminCounter % 7) === 0) && adminCounter !== 0) &&
                 <form onSubmit={(e) => { e.preventDefault(); betRealScore() }} style={{ marginTop: "20px" }}>
                     <div className="bet-line">
                         <input id="left-bet" style={{ height: "30px", textAlign: "center" }} type="number" placeholder={teamA} onChange={(e) => setRealScoreA(e.target.value)}></input>

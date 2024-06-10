@@ -3,7 +3,10 @@ import "../App.css";
 import { GameTab } from '../components/GameTab';
 import { games} from '../constants/games';
 import euroLogo from "../images/euro-logo.svg"
+import { Pagination } from '@mui/material';
 
+
+const itemsPerPage = 5;
 
 function Games(prop) {
   const {setModalContent, setOpen} = prop;
@@ -17,7 +20,14 @@ function Games(prop) {
   const [bets, setBets] = useState();
   const [realGames, setRealGames] = useState();
   const apiUrl = process.env.REACT_APP_API_URL;
-  
+  const [page, setPage] = useState(1);
+
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
+
+  const paginatedData = games?.slice((page - 1) * itemsPerPage, page * itemsPerPage);
+
   useEffect(() => {
       const getUserBets = () => {
           try{
@@ -64,7 +74,7 @@ function Games(prop) {
     return (
       <>
         {
-          Object.values(curr_games)?.map((game, index) => {
+          Object.values(paginatedData)?.map((game, index) => {
             // const curr_date = new Date();
             // const diffTime = curr_date - game?.date;
             if(game?.status === "Groups" && !showGroupGames) return null;
@@ -127,6 +137,15 @@ function Games(prop) {
           {showFinalGames ? 'Hide Final' : 'Reveal Final'}
         </div>
         {getGamesContent(finalGames)} */}
+        {
+          showGroupGames &&
+          <Pagination
+            count={Math.ceil(games.length / itemsPerPage)}
+            page={page}
+            onChange={handleChange}
+            sx={{ margin: "1vh 0 2vh 0", display: 'flex', justifyContent: 'center', fontSize: '1.2rem' }}
+          />
+        }
       </div>
     </>
   )
