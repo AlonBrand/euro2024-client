@@ -11,7 +11,7 @@ export const SidebarData = [
         className: 'nav-text'
     },
     {
-        title: 'Games',
+        title: 'Matches',
         path: '/games',
         icon: <IoIcons.IoIosPaper size={28}/>,
         className: 'nav-text'
