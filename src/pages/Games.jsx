@@ -24,6 +24,7 @@ function Games(prop) {
 
   const handleChange = (event, value) => {
     setPage(value);
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top of the page
   };
 
   const paginatedData = games?.slice((page - 1) * itemsPerPage, page * itemsPerPage);

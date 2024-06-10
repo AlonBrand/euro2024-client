@@ -8,6 +8,7 @@ import { BiBarChart } from "react-icons/bi";
 import { useEffect } from "react";
 import moment from 'moment';
 import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }) => {
@@ -136,7 +137,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                         />
                         <h4 style={{ "paddingTop": "5px" }}>{teamA}</h4>
                     </div>
-                    <h3 onClick={increaseAdminCount} style={{ "paddingTop": "15px", "textAlign": "center" }}>VS</h3>
+                    <h3 style={{ "paddingTop": "15px", "textAlign": "center" }}>VS</h3>
 
                     <div style={{ "justifyContent": "center", "verticalAlign": "center", width: "100px", textAlign: "center" }}>
                         <ReactCountryFlag
@@ -169,7 +170,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                     <div>
                         {date?.toLocaleDateString("he-IL")}
                     </div>
-                    <div>
+                    <div  onClick={increaseAdminCount} >
                         {date?.toLocaleTimeString("he-IL")}
                     </div>
                 </div>
@@ -384,8 +385,8 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                             </div>
                             <br></br>
                             {betInProgress ? (
-                                <span>Bet In Progress!</span>
-                            ) : (
+                                <CircularProgress  style={{ textAlign: "center" }} size={32}/>
+                                ) : (
                                 <Button
                                     id="bet-button"
                                     className="bet-button"
