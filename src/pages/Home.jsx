@@ -29,7 +29,7 @@ function Home() {
       }
     }
     getSideBets();
-  }, [apiUrl, topScorer, winningTeam]);
+  }, [apiUrl, didFetch]);
 
   const getHomeContent = (games) => {
     return (
