@@ -11,6 +11,7 @@ function SideBets() {
     const isAvailableGame = (new Date() - new Date(2024, 5, 28, 21)) < 0;
     const apiUrl = process.env.REACT_APP_API_URL;
     const [sideBets, setSideBets] = useState();
+    const [users, setUsers] = useState();
 
     useEffect(() => {
         const getSideBets = () => {
@@ -20,7 +21,8 @@ function SideBets() {
                         .then((response) => response.json()
                             .then((data) => {
                                 // console.log(data)
-                                setSideBets(() => data?.side_bets)
+                                setSideBets(data?.side_bets);
+                                setUsers(data?.users);
                             }
                             ))
                 }
@@ -89,27 +91,6 @@ function SideBets() {
         { value: 'Teemu Pukki', label: 'Teemu Pukki', country: 'Finland' }
     ];
     
-
-    const USER_MAP = {
-        '39': 'Chango',
-        '40': 'etamar',
-        '41': 'Dorw',
-        '42': 'Eyalyosefi5',
-        '43': 'Lupo',
-        '45': 'Bargig',
-        '46': 'Leo',
-        '47': 'Dav1x',
-        '48': 'tomer',
-        '49': 'Falul',
-        '53': 'Ronbi',
-        '55': 'Itay Biton',
-        '56': 'Ronmik',
-        '59': 'TBH',
-        '61': 'Michael Fhima',
-        '62': 'Avihu',
-        '64': 'Oznativ'
-    }
-
     const handleWinningTeam = (e) => {
         setWinningTeam(() => e?.label)
     }
@@ -158,10 +139,15 @@ function SideBets() {
                     <tbody>
                         {
                             sideBets?.map((sideBet, index) => {
-                                console.log(sideBet)
+                                let userName = '';
+                                users?.forEach((user) => {
+                                    if (user !== undefined && user.length > 1 && (user[0] === sideBet[1])) {
+                                        userName = user[1];
+                                    } 
+                                });
                                 return (
                                     <tr key={index}>
-                                        <td>{USER_MAP[sideBet[1]]}</td>
+                                        <td>{userName}</td>
                                         <td>{sideBet[2]}</td>
                                         <td>{sideBet[3]}</td>
                                     </tr>

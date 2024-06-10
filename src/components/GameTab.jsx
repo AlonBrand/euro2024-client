@@ -7,6 +7,7 @@ import ReactCountryFlag from "react-country-flag"
 import { BiBarChart } from "react-icons/bi";
 import { useEffect } from "react";
 import moment from 'moment';
+import Button from '@mui/material/Button';
 
 
 export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }) => {
@@ -266,7 +267,6 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
     const gameTimer = () => {
         if (!isAvailableGame) return;
         return (
-
             <div id={`timerWrapper-${id}`}>
                 Time left:
                 <Timer class={timerAlert ? 'one_min_left' : null}
@@ -353,7 +353,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                     {
                         <BiBarChart style={{ float: "right", height: "25px", width: "25px", marginRight: "10px" }} onClick={showGameBets} />
                     }
-                    <h3 style={{ paddingLeft: "35px" }}>No more bet kapara!</h3>
+                    <h3 style={{ paddingLeft: "35px" }}>No More Bet Kapara!</h3>
                     {/* {
                             serverGameID === id && serverScoreA !== undefined && serverScoreB !== undefined ? 
                             `Your current bet: ${serverScoreA} - ${serverScoreB}` : undefined
@@ -380,10 +380,20 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                                 <input id="right-bet" className="bet-input" type="tel" placeholder={teamB} onChange={(e) => setScoreB(e.target.value)}></input>
                             </div>
                             <br></br>
-                            {
-                                betInProgress ? <span>Bet In Progress!</span> :
-                                    <input id="bet-button" className="bet-button" type="submit" value={'Bet'} disabled={validateInput()}></input>
-                            }
+                            {betInProgress ? (
+                                <span>Bet In Progress!</span>
+                            ) : (
+                                <Button
+                                    id="bet-button"
+                                    className="bet-button"
+                                    type="submit"
+                                    variant="outlined"
+                                    color="primary"
+                                    disabled={validateInput()}
+                                >
+                                    Bet
+                                </Button>
+                            )}
                         </form>
                         {
                             // serverScoreA !== undefined && serverScoreB !== undefined ? 
@@ -393,7 +403,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                     </div>
                 </>
             }
-            {((adminCounter % 7) == 0) &&
+            {((adminCounter % 7) == 0 && adminCounter !== 0) &&
                 <form onSubmit={(e) => { e.preventDefault(); betRealScore() }} style={{ marginTop: "20px" }}>
                     <div className="bet-line">
                         <input id="left-bet" style={{ height: "30px", textAlign: "center" }} type="number" placeholder={teamA} onChange={(e) => setRealScoreA(e.target.value)}></input>
