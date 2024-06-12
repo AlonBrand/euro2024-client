@@ -11,28 +11,7 @@ function SideBets() {
     const [winningTeam, setWinningTeam] = useState();
     const [topScorer, setTopScorrer] = useState();
     const isAvailableGame = (new Date() - new Date(2024, 5, 28, 21)) < 0;
-    const apiUrl = process.env.REACT_APP_API_URL;
-    const [sideBets, setSideBets] = useState();
-    const [users, setUsers] = useState();
-    const [updateTrigger, setUpdateTrigger] = useState(false); // New state to trigger updates
     const [postInProgress, setPostInProgress] = useState(false);
-
-
-    useEffect(() => {
-        const getSideBets = () => {
-            try {
-                fetch(`${apiUrl}/get-side-bets`)
-                    .then((response) => response.json())
-                    .then((data) => {
-                        setSideBets(data?.side_bets);
-                        setUsers(data?.users);
-                    });
-            } catch (e) {
-                console.log(e);
-            }
-        };
-        getSideBets();
-    }, [apiUrl, updateTrigger]); // Depend on updateTrigger
 
     const winningTeamOptions = [
         { value: 'Albania',     label: 'Albania' },
@@ -106,7 +85,6 @@ function SideBets() {
         postSideBet({winnigTeam: winningTeam, topScorer: topScorer}).then((data) => {
             setPostInProgress(false);
             console.log(data)
-            setUpdateTrigger(prev => !prev); // Toggle the updateTrigger state to re-fetch data
         });
     }
 
@@ -140,37 +118,6 @@ function SideBets() {
                     <div id='side-bets-placeholder'></div>
                 </div>
             </div>
-            {
-                (sideBets !== undefined && sideBets.length > 0 && !postInProgress) &&
-                <table className="rank-table" style={{ marginBottom: "50px", textAlign: "center" }}>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Winning Team</th>
-                            <th>Top Scorer</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            sideBets?.map((sideBet, index) => {
-                                let userName = '';
-                                users?.forEach((user) => {
-                                    if (user !== undefined && user.length > 1 && (user[0] === sideBet[1])) {
-                                        userName = user[1];
-                                    } 
-                                });
-                                return (
-                                    <tr key={index}>
-                                        <td>{userName}</td>
-                                        <td>{sideBet[2]}</td>
-                                        <td>{sideBet[3]}</td>
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
-            }
         </div>
     )
 }
