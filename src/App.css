@@ -38,7 +38,7 @@
 }
 
 .rank-table thead tr {
-  background-color: #0d1a4d;
+  background-color: #00796b;
   color: #ffffff;
   /* text-align: left; */
 }
@@ -57,12 +57,12 @@
 }
 
 .rank-table tbody tr:last-of-type {
-  border-bottom: 2px solid #0d1a4d;
+  border-bottom: 2px solid #00796b;
 }
 
 .rank-table tbody tr.active-row {
   font-weight: bold;
-  color: #0d1a4d;
+  color: #00796b;
 }
 
 .rank-table-tab {
