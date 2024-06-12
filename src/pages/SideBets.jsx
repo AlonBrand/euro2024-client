@@ -18,7 +18,6 @@ function SideBets() {
     const [postInProgress, setPostInProgress] = useState(false);
 
     const euro2024StartTime = new Date('June 14, 2024 22:00:00 GMT+0300');
-
     const [gameStarted, setGameStarted] = useState(false);
 
     useEffect(() => {
