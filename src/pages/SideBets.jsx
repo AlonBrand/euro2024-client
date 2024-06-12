@@ -17,6 +17,19 @@ function SideBets() {
     const [updateTrigger, setUpdateTrigger] = useState(false); // New state to trigger updates
     const [postInProgress, setPostInProgress] = useState(false);
 
+    const euro2024StartTime = new Date('June 14, 2024 22:00:00 GMT+0300');
+
+    const [gameStarted, setGameStarted] = useState(false);
+
+    useEffect(() => {
+        const checkGameStarted = () => {
+            const currentTime = new Date();
+            if (currentTime > euro2024StartTime) {
+                setGameStarted(true);
+            }
+        };
+        checkGameStarted();
+    }, []);
 
     useEffect(() => {
         const getSideBets = () => {
@@ -31,8 +44,9 @@ function SideBets() {
                 console.log(e);
             }
         };
-        getSideBets();
-    }, [apiUrl, updateTrigger]); // Depend on updateTrigger
+        if (gameStarted)
+            getSideBets();
+    }, [apiUrl, updateTrigger, gameStarted]); // Depend on updateTrigger
 
     const winningTeamOptions = [
         { value: 'Albania',     label: 'Albania' },
