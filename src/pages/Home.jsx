@@ -135,10 +135,10 @@ function Home() {
             {
               users !== undefined &&
               <>
-              <Typography variant="h4" component="div">
+              <Typography variant="h5" component="div">
                 Your Rank
               </Typography>
-              <Typography variant="h5" color="text.secondary" gutterBottom>
+              <Typography variant="h6" color="text.secondary" gutterBottom>
                   {users.findIndex(user => user.userId === window.window.USER_ID) + 1} / {users.length}
               </Typography>
               </>
@@ -146,10 +146,10 @@ function Home() {
             {
               winningTeam !== undefined &&
               <>
-                <Typography variant="h4" component="div">
+                <Typography variant="h5" component="div">
                   Winning Team
                 </Typography>
-                <Typography variant="h5" color="text.secondary" gutterBottom>
+                <Typography variant="h6" color="text.secondary" gutterBottom>
                   {winningTeam}
                 </Typography>
               </>
@@ -157,10 +157,10 @@ function Home() {
             {
               topScorer !== undefined &&
               <>
-                <Typography variant="h4" component="div">
+                <Typography variant="h5" component="div">
                   Top Scorer
                 </Typography>
-                <Typography variant="h5" color="text.secondary" gutterBottom>
+                <Typography variant="h6" color="text.secondary" gutterBottom style={{ marginBottom: 0 }}>
                   {topScorer}
                 </Typography>
               </>
@@ -176,7 +176,7 @@ function Home() {
           {getHomeContent(games)}
           {
             isEmptyDay &&
-            <Typography variant="h6" color="text.secondary" gutterBottom>
+            <Typography variant="h6" color="text.secondary" gutterBottom style={{ marginBottom: 0 }}>
               No Matches Today!
             </Typography>
           }
