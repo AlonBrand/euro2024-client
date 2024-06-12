@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { flagsPaths, games } from '../constants/games';
 import euroLogo from "../images/euro-logo.svg"
-import ReactCountryFlag from "react-country-flag"
+import ReactCountryFlag from "react-country-flag";
+import { Card, CardContent, Typography } from '@mui/material';
 import "../App.css";
 
 function Home() {
   const [isEmptyDay, setIsEmptyDay] = useState(true);
   const [winningTeam, setWinningTeam] = useState();
   const [topScorer, setTopScorer] = useState();
+  const [users, setUsers] = useState();
   const [didFetch, setDidFetch] = useState(false);
   const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -18,10 +20,19 @@ function Home() {
           fetch(`${apiUrl}/get-side-bets/${window.USER_ID}`)
             .then((response) => response.json()
               .then((data) => {
+                console.log("🚀 ~ .then ~ data:", data)
                 setDidFetch(true);
                 console.log(data)
-                setWinningTeam(() => data?.winningTeam)
-                setTopScorer(() => data?.topScorer)
+                setWinningTeam(data?.winningTeam);
+                setTopScorer(data?.topScorer);
+                setUsers(data?.users?.map((user) => {
+                  return {
+                      name: user[1],
+                      points: user[3],
+                      userId: user[0]
+                  }
+              }
+              )?.sort((a, b) => b?.points - a?.points))
               }));
         }
       } catch (e) {
@@ -29,7 +40,7 @@ function Home() {
       }
     }
     getSideBets();
-  }, [apiUrl, didFetch]);
+  }, [apiUrl, didFetch, window.USER_ID]);
 
   const getHomeContent = (games) => {
     return (
@@ -111,31 +122,68 @@ function Home() {
       </>
     )
   }
-
+  console.log(isEmptyDay)
   return (
     <>
       <div style={{ textAlign: "center", marginTop: "4vh" }}>
         <img alt='' src={euroLogo} />
       </div>
-      {
-        winningTeam !== undefined && topScorer !== undefined && window.USER_ID !== undefined &&
-        <div style={{ margin: "10px 0 10px 0", textAlign: "center" }}>
-          <h2> Your Side Bets</h2>
-          <br />
-          <h4>{`Winning Team: ${winningTeam}`}</h4>
-          <br />
-          <h4>{`Top Scorer: ${topScorer}`}</h4>
-        </div>
-      }
-      <h2 className='pageTitle' style={{ padding: "20px" }}>Today's Matches</h2>
-      {getHomeContent(games)}
-      {/* {getHomeContent(eighthGames)}
-      {getHomeContent(quarterGames)}
-      {getHomeContent(semiGames)}
-      {getHomeContent(finalGames)} */}
-      {
-        isEmptyDay && <h3 style={{ "textAlign": "center" }}>No Matches Today!</h3>
-      }
+      <Card sx={{ maxWidth: 345, margin: '20px auto', mt: 4 }}>
+        <CardContent>
+          {
+            users !== undefined &&
+            <>
+            <Typography variant="h4" component="div">
+              Your Rank
+            </Typography>
+            <Typography variant="h4" color="text.secondary" gutterBottom>
+                {users.findIndex(user => user.userId === window.window.USER_ID) + 1} / {users.length}
+            </Typography>
+            </>
+          }
+          {
+            winningTeam !== undefined &&
+            <>
+              <Typography variant="h4" component="div">
+                Winning Team
+              </Typography>
+              <Typography variant="h4" color="text.secondary" gutterBottom>
+                {winningTeam}
+              </Typography>
+            </>
+          }
+          {
+            topScorer !== undefined &&
+            <>
+              <Typography variant="h4" component="div">
+                Top Scorer
+              </Typography>
+              <Typography variant="h4" color="text.secondary" gutterBottom>
+                {topScorer}
+              </Typography>
+            </>
+          }
+        </CardContent>
+      </Card>
+
+      <Card sx={{ maxWidth: 345, mt: 4, margin: '20px auto' }}>
+        <CardContent>
+          <Typography variant="h4" component="div">
+            Today's Matches
+          </Typography>
+          {getHomeContent(games)}
+          {
+            isEmptyDay &&
+            <Typography variant="h4" color="text.secondary" gutterBottom>
+              No Matches Today!
+            </Typography>
+          }
+          {/* {getHomeContent(eighthGames)}
+          {getHomeContent(quarterGames)}
+          {getHomeContent(semiGames)}
+          {getHomeContent(finalGames)} */}
+        </CardContent>
+      </Card>
     </>
   )
 }
