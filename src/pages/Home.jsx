@@ -122,59 +122,61 @@ function Home() {
       </>
     )
   }
-  console.log(isEmptyDay)
+
   return (
     <>
       <div style={{ textAlign: "center", marginTop: "4vh" }}>
         <img alt='' src={euroLogo} />
       </div>
-      <Card sx={{ maxWidth: 345, margin: '20px auto', mt: 4 }}>
-        <CardContent>
-          {
-            users !== undefined &&
-            <>
-            <Typography variant="h4" component="div">
-              Your Rank
-            </Typography>
-            <Typography variant="h4" color="text.secondary" gutterBottom>
-                {users.findIndex(user => user.userId === window.window.USER_ID) + 1} / {users.length}
-            </Typography>
-            </>
-          }
-          {
-            winningTeam !== undefined &&
-            <>
+      {
+        window.USER_ID !== undefined &&
+        <Card sx={{ maxWidth: 345, margin: '20px auto', mt: 4 }}>
+          <CardContent>
+            {
+              users !== undefined &&
+              <>
               <Typography variant="h4" component="div">
-                Winning Team
+                Your Rank
               </Typography>
-              <Typography variant="h4" color="text.secondary" gutterBottom>
-                {winningTeam}
+              <Typography variant="h5" color="text.secondary" gutterBottom>
+                  {users.findIndex(user => user.userId === window.window.USER_ID) + 1} / {users.length}
               </Typography>
-            </>
-          }
-          {
-            topScorer !== undefined &&
-            <>
-              <Typography variant="h4" component="div">
-                Top Scorer
-              </Typography>
-              <Typography variant="h4" color="text.secondary" gutterBottom>
-                {topScorer}
-              </Typography>
-            </>
-          }
-        </CardContent>
-      </Card>
-
+              </>
+            }
+            {
+              winningTeam !== undefined &&
+              <>
+                <Typography variant="h4" component="div">
+                  Winning Team
+                </Typography>
+                <Typography variant="h5" color="text.secondary" gutterBottom>
+                  {winningTeam}
+                </Typography>
+              </>
+            }
+            {
+              topScorer !== undefined &&
+              <>
+                <Typography variant="h4" component="div">
+                  Top Scorer
+                </Typography>
+                <Typography variant="h5" color="text.secondary" gutterBottom>
+                  {topScorer}
+                </Typography>
+              </>
+            }
+          </CardContent>
+        </Card>
+      }
       <Card sx={{ maxWidth: 345, mt: 4, margin: '20px auto' }}>
         <CardContent>
-          <Typography variant="h4" component="div">
+          <Typography variant="h5" component="div">
             Today's Matches
           </Typography>
           {getHomeContent(games)}
           {
             isEmptyDay &&
-            <Typography variant="h4" color="text.secondary" gutterBottom>
+            <Typography variant="h6" color="text.secondary" gutterBottom>
               No Matches Today!
             </Typography>
           }

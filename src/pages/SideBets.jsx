@@ -4,6 +4,8 @@ import euroLogo from "../images/euro-logo.svg"
 import { postSideBet } from "../utils/postFunctions"
 import Button from '@mui/material/Button';
 import "../App.css";
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 function SideBets() {
     const [winningTeam, setWinningTeam] = useState();
@@ -12,26 +14,25 @@ function SideBets() {
     const apiUrl = process.env.REACT_APP_API_URL;
     const [sideBets, setSideBets] = useState();
     const [users, setUsers] = useState();
+    const [updateTrigger, setUpdateTrigger] = useState(false); // New state to trigger updates
+    const [postInProgress, setPostInProgress] = useState(false);
+
 
     useEffect(() => {
         const getSideBets = () => {
             try {
-                if (sideBets === undefined) {
-                    fetch(`${apiUrl}/get-side-bets`)
-                        .then((response) => response.json()
-                            .then((data) => {
-                                // console.log(data)
-                                setSideBets(data?.side_bets);
-                                setUsers(data?.users);
-                            }
-                            ))
-                }
+                fetch(`${apiUrl}/get-side-bets`)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        setSideBets(data?.side_bets);
+                        setUsers(data?.users);
+                    });
             } catch (e) {
-                console.log(e)
+                console.log(e);
             }
-        }
+        };
         getSideBets();
-    }, [sideBets, apiUrl]);
+    }, [apiUrl, updateTrigger]); // Depend on updateTrigger
 
     const winningTeamOptions = [
         { value: 'Albania',     label: 'Albania' },
@@ -100,6 +101,14 @@ function SideBets() {
     }
 
     const disableSend = () => winningTeam === undefined || topScorer === undefined || (isAvailableGame === false);
+    const handleSend = () => {
+        setPostInProgress(true);
+        postSideBet({winnigTeam: winningTeam, topScorer: topScorer}).then((data) => {
+            setPostInProgress(false);
+            console.log(data)
+            setUpdateTrigger(prev => !prev); // Toggle the updateTrigger state to re-fetch data
+        });
+    }
 
     return (
         <div>
@@ -122,12 +131,17 @@ function SideBets() {
                     onChange={(e) => handleTopScorer(e)}
                 />
                 <div style={{ textAlign: "center", marginTop: "30px", "marginBotto": "50px" }}>
-                    <Button id="side-bet-button" variant="outlined" style={{ marginRight: "10px", width: "100px", height: "50px" }} disabled={disableSend()} onClick={() => postSideBet({winnigTeam: winningTeam, topScorer: topScorer})} >Send</Button>
+                    {
+                        postInProgress ?
+                        <CircularProgress  style={{ marginTop: "2vh", textAlign: "center" }} size={32}/>
+                        :
+                        <Button id="side-bet-button" variant="outlined" style={{ marginRight: "10px", width: "100px", height: "50px" }} disabled={disableSend()} onClick={handleSend} >Send</Button>
+                    }
                     <div id='side-bets-placeholder'></div>
                 </div>
             </div>
             {
-                (sideBets !== undefined && sideBets.length > 0) &&
+                (sideBets !== undefined && sideBets.length > 0 && !postInProgress) &&
                 <table className="rank-table" style={{ marginBottom: "50px", textAlign: "center" }}>
                     <thead>
                         <tr>
