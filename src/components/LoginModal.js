@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import BetsModal from "react-modal";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -7,6 +7,16 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 
 export default function LoginModal({ modalIsOpen, closeModal, handleSubmit, handleCancelLogOut, handleLogOut, title, postInProgress }) {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    useEffect(() => {
+        if (!modalIsOpen) {
+            setUsername('');
+            setPassword('');
+        }
+    }, [modalIsOpen]);
+
     const customStyles = {
         content: {
             position: "absolute",
@@ -26,6 +36,8 @@ export default function LoginModal({ modalIsOpen, closeModal, handleSubmit, hand
         overlay: { zIndex: "900" }
     };
 
+    const isSubmitDisabled = !username || !password;
+
     return (
         <BetsModal
             isOpen={modalIsOpen}
@@ -38,14 +50,14 @@ export default function LoginModal({ modalIsOpen, closeModal, handleSubmit, hand
                 {title !== 'log-out' ?
                     <>
                         <form style={{ textAlign: "center" }} onSubmit={handleSubmit}>
-                            <TextField  id={"name"} label="User Name" variant="outlined" />
-                            <TextField  id={"password"} label="Password" variant="outlined" style={{ marginTop: "2vh" }} />
+                            <TextField id={"name"} label="User Name" variant="outlined" onChange={(e) => setUsername(e.target.value)} />
+                            <TextField id={"password"} label="Password" variant="outlined" style={{ marginTop: "2vh" }} onChange={(e) => setPassword(e.target.value)} />
                             <div className='submitWrapper'>
                                 {
                                     postInProgress ?
-                                        <CircularProgress  style={{ marginTop: "2vh", textAlign: "center" }} size={32}/>
+                                        <CircularProgress style={{ marginTop: "2vh", textAlign: "center" }} size={32} />
                                         :
-                                        <Button style={{ height: "50px", marginTop: "2vh" }} type="submit" variant="outlined">{title}</Button>
+                                        <Button style={{ height: "50px", marginTop: "2vh" }} type="submit" variant="outlined" disabled={isSubmitDisabled}>{title}</Button>
                                 }
                             </div>
                         </form>
