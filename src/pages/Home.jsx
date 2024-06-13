@@ -27,12 +27,12 @@ function Home() {
                 setTopScorer(data?.topScorer);
                 setUsers(data?.users?.map((user) => {
                   return {
-                      name: user[1],
-                      points: user[3],
-                      userId: user[0]
+                    name: user[1],
+                    points: user[3],
+                    userId: user[0]
                   }
-              }
-              )?.sort((a, b) => b?.points - a?.points))
+                }
+                )?.sort((a, b) => b?.points - a?.points))
               }));
         }
       } catch (e) {
@@ -131,41 +131,44 @@ function Home() {
       {
         window.USER_ID !== undefined &&
         <Card sx={{ maxWidth: 345, margin: '20px auto', mt: 4 }}>
-          <CardContent>
-            {
-              users !== undefined &&
-              <>
-              <Typography variant="h5" component="div">
-                Your Rank
-              </Typography>
-              <Typography variant="h6" color="text.secondary" gutterBottom>
-                  {users.findIndex(user => user.userId === window.window.USER_ID) + 1} / {users.length}
-              </Typography>
-              </>
-            }
-            {
-              winningTeam !== undefined &&
-              <>
-                <Typography variant="h5" component="div">
-                  Winning Team
-                </Typography>
-                <Typography variant="h6" color="text.secondary" gutterBottom>
-                  {winningTeam}
-                </Typography>
-              </>
-            }
-            {
-              topScorer !== undefined &&
-              <>
-                <Typography variant="h5" component="div">
-                  Top Scorer
-                </Typography>
-                <Typography variant="h6" color="text.secondary" gutterBottom style={{ marginBottom: 0 }}>
-                  {topScorer}
-                </Typography>
-              </>
-            }
-          </CardContent>
+          {
+            (users !== undefined || winningTeam !== undefined || topScorer !== undefined) &&
+            <CardContent>
+              {
+                users !== undefined &&
+                <>
+                  <Typography variant="h5" component="div">
+                    Your Rank
+                  </Typography>
+                  <Typography variant="h6" color="text.secondary" gutterBottom>
+                    {users.findIndex(user => user.userId === window.window.USER_ID) + 1} / {users.length}
+                  </Typography>
+                </>
+              }
+              {
+                winningTeam !== undefined &&
+                <>
+                  <Typography variant="h5" component="div">
+                    Winning Team
+                  </Typography>
+                  <Typography variant="h6" color="text.secondary" gutterBottom>
+                    {winningTeam}
+                  </Typography>
+                </>
+              }
+              {
+                topScorer !== undefined &&
+                <>
+                  <Typography variant="h5" component="div">
+                    Top Scorer
+                  </Typography>
+                  <Typography variant="h6" color="text.secondary" gutterBottom style={{ marginBottom: 0 }}>
+                    {topScorer}
+                  </Typography>
+                </>
+              }
+            </CardContent>
+          }
         </Card>
       }
       <Card sx={{ maxWidth: 345, mt: 4, margin: '20px auto' }}>

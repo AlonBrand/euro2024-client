@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Select from 'react-select'
 import euroLogo from "../images/euro-logo.svg"
 import { postSideBet } from "../utils/postFunctions"
@@ -10,13 +10,13 @@ import CircularProgress from '@mui/material/CircularProgress';
 function SideBets() {
     const [winningTeam, setWinningTeam] = useState();
     const [topScorer, setTopScorrer] = useState();
-    const isAvailableGame = (new Date() - new Date(2024, 5, 28, 21)) < 0;
     const apiUrl = process.env.REACT_APP_API_URL;
     const [sideBets, setSideBets] = useState();
     const [users, setUsers] = useState();
-    const [updateTrigger, setUpdateTrigger] = useState(false); // New state to trigger updates
+    const [updateTrigger, setUpdateTrigger] = useState(false);
     const [postInProgress, setPostInProgress] = useState(false);
 
+    const euro2024StartTime = useMemo(() => new Date('June 14, 2024 22:00:00 GMT+0300'), []);
 
     useEffect(() => {
         const getSideBets = () => {
@@ -31,33 +31,33 @@ function SideBets() {
                 console.log(e);
             }
         };
-        getSideBets();
-    }, [apiUrl, updateTrigger]); // Depend on updateTrigger
+        if (new Date() > euro2024StartTime) getSideBets();
+    }, [apiUrl, updateTrigger, euro2024StartTime]); // Depend on updateTrigger
 
     const winningTeamOptions = [
-        { value: 'Albania',     label: 'Albania' },
-        { value: 'Austria',     label: 'Austria' },
-        { value: 'Belgium',     label: 'Belgium' },
-        { value: 'Croatia',     label: 'Croatia' },
-        { value: 'Czechia',     label: 'Czechia' },
-        { value: 'Denemark',    label: 'Denemark' },
-        { value: 'England',     label: 'England' },
-        { value: 'France',      label: 'France' },
-        { value: 'Georgia',     label: 'Georgia' },
-        { value: 'Germany',     label: 'Germany' },
-        { value: 'Hungary',     label: 'Hungary' },
-        { value: 'Italy',       label: 'Italy' },
+        { value: 'Albania', label: 'Albania' },
+        { value: 'Austria', label: 'Austria' },
+        { value: 'Belgium', label: 'Belgium' },
+        { value: 'Croatia', label: 'Croatia' },
+        { value: 'Czechia', label: 'Czechia' },
+        { value: 'Denemark', label: 'Denemark' },
+        { value: 'England', label: 'England' },
+        { value: 'France', label: 'France' },
+        { value: 'Georgia', label: 'Georgia' },
+        { value: 'Germany', label: 'Germany' },
+        { value: 'Hungary', label: 'Hungary' },
+        { value: 'Italy', label: 'Italy' },
         { value: 'Netherlands', label: 'Netherlands' },
-        { value: 'Poland',      label: 'Poland' },
-        { value: 'Portugal',    label: 'Portugal' },
-        { value: 'Romania',     label: 'Romania' },
-        { value: 'Scotland',    label: 'Scotland' },
-        { value: 'Serbia',      label: 'Serbia' },
-        { value: 'Slovakia',    label: 'Slovakia' },
-        { value: 'Slovenia',    label: 'Slovenia' },
-        { value: 'Spain',       label: 'Spain' },
-        { value: 'Turkiye',     label: 'Turkiye' },
-        { value: 'Ukraine',     label: 'Ukraine' },
+        { value: 'Poland', label: 'Poland' },
+        { value: 'Portugal', label: 'Portugal' },
+        { value: 'Romania', label: 'Romania' },
+        { value: 'Scotland', label: 'Scotland' },
+        { value: 'Serbia', label: 'Serbia' },
+        { value: 'Slovakia', label: 'Slovakia' },
+        { value: 'Slovenia', label: 'Slovenia' },
+        { value: 'Spain', label: 'Spain' },
+        { value: 'Turkiye', label: 'Turkiye' },
+        { value: 'Ukraine', label: 'Ukraine' },
     ]
 
     const topScorerOptions = [
@@ -91,7 +91,7 @@ function SideBets() {
         { value: 'Timo Werner', label: 'Timo Werner', country: 'Germany' },
         { value: 'Teemu Pukki', label: 'Teemu Pukki', country: 'Finland' }
     ];
-    
+
     const handleWinningTeam = (e) => {
         setWinningTeam(() => e?.label)
     }
@@ -100,10 +100,10 @@ function SideBets() {
         setTopScorrer(() => e?.label)
     }
 
-    const disableSend = () => winningTeam === undefined || topScorer === undefined || (isAvailableGame === false);
+    const disableSend = () => (winningTeam === undefined || topScorer === undefined);
     const handleSend = () => {
         setPostInProgress(true);
-        postSideBet({winnigTeam: winningTeam, topScorer: topScorer}).then((data) => {
+        postSideBet({ winnigTeam: winningTeam, topScorer: topScorer }).then((data) => {
             setPostInProgress(false);
             console.log(data)
             setUpdateTrigger(prev => !prev); // Toggle the updateTrigger state to re-fetch data
@@ -116,30 +116,34 @@ function SideBets() {
                 <img alt='' src={euroLogo} />
             </div>
             <h1 style={{ "textAlign": "center", "paddingTop": "20px", "paddingBottom": "20px" }}>Side Bets</h1>
-            <div style={{ margin: "0px 20px 20px 20px" }} className="side-bets">
-                <h3 style={{ marginBottom: "10px" }}> Winning Team</h3>
-                <Select
-                    styles={{ "paddingBottom": "10px" }}
-                    options={winningTeamOptions}
-                    isDisabled={!isAvailableGame}
-                    onChange={(e) => handleWinningTeam(e)}
-                />
-                <h3 style={{ marginBottom: "10px", marginTop: "20px" }}>Top Scorer</h3>
-                <Select
-                    options={topScorerOptions}
-                    isDisabled={!isAvailableGame}
-                    onChange={(e) => handleTopScorer(e)}
-                />
-                <div style={{ textAlign: "center", marginTop: "30px", "marginBotto": "50px" }}>
-                    {
-                        postInProgress ?
-                        <CircularProgress  style={{ marginTop: "2vh", textAlign: "center" }} size={32}/>
-                        :
-                        <Button id="side-bet-button" variant="outlined" style={{ marginRight: "10px", width: "100px", height: "50px" }} disabled={disableSend()} onClick={handleSend} >Send</Button>
-                    }
-                    <div id='side-bets-placeholder'></div>
+            {
+                (new Date() <= euro2024StartTime) &&
+                <div style={{ margin: "0px 20px 20px 20px" }} className="side-bets">
+                    <h3 style={{ marginBottom: "10px" }}> Winning Team</h3>
+                    <Select
+                        styles={{ "paddingBottom": "10px" }}
+                        options={winningTeamOptions}
+                        onChange={(e) => handleWinningTeam(e)}
+                    />
+                    <h3 style={{ marginBottom: "10px", marginTop: "20px" }}>Top Scorer</h3>
+                    <Select
+                        options={topScorerOptions}
+                        onChange={(e) => handleTopScorer(e)}
+                    />
+                    <div style={{ textAlign: "center", marginTop: "30px", "marginBotto": "50px" }}>
+                        {
+                            postInProgress ?
+                                <CircularProgress style={{ marginTop: "2vh", textAlign: "center" }} size={32} />
+                                :
+                                <Button id="side-bet-button" variant="outlined" style={{ marginRight: "10px", width: "100px", height: "50px" }} disabled={disableSend()} onClick={handleSend} >Send</Button>
+                        }
+                        <div id='side-bets-placeholder'></div>
+                    </div>
                 </div>
-            </div>
+
+            }
+
+
             {
                 (sideBets !== undefined && sideBets.length > 0 && !postInProgress) &&
                 <table className="rank-table" style={{ marginBottom: "50px", textAlign: "center" }}>
@@ -157,7 +161,7 @@ function SideBets() {
                                 users?.forEach((user) => {
                                     if (user !== undefined && user.length > 1 && (user[0] === sideBet[1])) {
                                         userName = user[1];
-                                    } 
+                                    }
                                 });
                                 return (
                                     <tr key={index}>
