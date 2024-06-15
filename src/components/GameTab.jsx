@@ -21,6 +21,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
     const [timerAlert, setTimerAlert] = useState(true);
     const [isAvailableGame, setIsAvailableGame] = useState(new Date() < date);
     const [betInProgress, setBetInProgress] = useState(false);
+    const [showGameBetsInProgress, setShowGameBetsInProgress] = useState(false);
     const apiUrl = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
@@ -208,7 +209,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
         if (bets === undefined || users === undefined) return null;
         clearInterval(interval_id);
         return (
-            <table className="rank-table rank-table-tab" style={{ fontSize: '20px' }}>
+            <table className="rank-table rank-table-tab" style={{ fontSize: '16px' }}>
                 <thead>
                     <tr>
                         <th >Name</th>
@@ -239,8 +240,10 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
     }
 
     const showGameBets = async () => {
+        setShowGameBetsInProgress(true);
         try {
             let response = await fetch(`${apiUrl}/get-bets/${id}`);
+            setShowGameBetsInProgress(false);
             console.log(teamA, teamB);
             response.json()
                 .then((data) => {
@@ -355,6 +358,9 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                         <p>{info}</p>
                     }
                     {
+                        showGameBetsInProgress ? 
+                        <CircularProgress  style={{ float: "right", height: "25px", width: "25px", marginRight: "10px" }}/>
+                        :
                         <BiBarChart style={{ float: "right", height: "25px", width: "25px", marginRight: "10px" }} onClick={showGameBets} />
                     }
                     <h3 style={{ paddingLeft: "35px" }}>No More Bet Kapara!</h3>

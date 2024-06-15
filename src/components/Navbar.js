@@ -106,7 +106,7 @@ function Navbar(props) {
                             <span className="user-name-bar" onClick={handleDisconnect}>{userName} </span>
                         ) : (
                             <>
-                                <AiIcons.AiOutlinePlus className="sing-up-icon" onClick={handleSignUp} />
+                                {/* <AiIcons.AiOutlinePlus className="sing-up-icon" onClick={handleSignUp} /> */}
                                 <ImIcons.ImEnter onClick={handleLogIn} />
                             </>
                         )}
