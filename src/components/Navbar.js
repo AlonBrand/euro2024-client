@@ -29,10 +29,10 @@ function Navbar(props) {
         setSideBar(!sidebar);
     };
 
-    const handleSignUp = () => {
-        setModalTitle("Sign Up");
-        setModalIsOpen(true);
-    };
+    // const handleSignUp = () => {
+    //     setModalTitle("Sign Up");
+    //     setModalIsOpen(true);
+    // };
 
     const handleLogIn = () => {
         setModalTitle("Log In");
