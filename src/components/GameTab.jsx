@@ -25,12 +25,13 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
     const apiUrl = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
-        return clearInterval(interval_id);
-    }, [interval_id])
+        const interval_id = setInterval(() => {
+            setIsAvailableGame(new Date() < date);
+        }, 10000);
 
-    interval_id = setInterval(() => {
-        setIsAvailableGame(new Date() < date);
-    }, 10000);
+        // Clear interval on component unmount
+        return () => clearInterval(interval_id);
+    }, [date]);
 
     const betRecivedContent = () => {
         return (
