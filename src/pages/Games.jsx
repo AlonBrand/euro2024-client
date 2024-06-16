@@ -39,7 +39,6 @@ function Games(prop) {
   const paginatedData = showAllGames ? games.slice((page - 1) * itemsPerPage, page * itemsPerPage) : availableGames.slice((page - 1) * itemsPerPage, page * itemsPerPage);
   const gamesCount = showAllGames ? games?.length : availableGames?.length;
 
-  console.log(paginatedData)
   useEffect(() => {
         const getUserBets = () => {
             try{
