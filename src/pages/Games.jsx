@@ -31,8 +31,11 @@ function Games(prop) {
     }
   };
 
+  const availableGames = games.filter((game) => game.date > new Date());
+  const paginatedData = showAllGames ? games.slice((page - 1) * itemsPerPage, page * itemsPerPage) : availableGames.slice((page - 1) * itemsPerPage, page * itemsPerPage);
+  const gamesCount = showAllGames ? games?.length : availableGames?.length;
 
-  const paginatedData = games?.filter(game => (showAllGames ? true : game.date > new Date()  )).slice((page - 1) * itemsPerPage, page * itemsPerPage);
+  console.log(paginatedData)
   useEffect(() => {
         const getUserBets = () => {
             try{
@@ -144,7 +147,7 @@ function Games(prop) {
         </div>
         {getGamesContent(finalGames)} */}
           <Pagination
-            count={Math.ceil(games.length / itemsPerPage)}
+            count={Math.ceil(gamesCount / itemsPerPage)}
             page={page}
             onChange={handleChange}
             sx={{ margin: "1vh 0 2vh 0", display: 'flex', justifyContent: 'center', fontSize: '1.2rem' }}
