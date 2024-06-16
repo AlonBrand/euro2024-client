@@ -30,8 +30,12 @@ function Games(prop) {
       console.error(`Element with id "targetElement" not found`);
     }
   };
+  
+  const availableGames = games.filter((game) => {
+    const gameEndTime = new Date(game.date.getTime() + 90 * 60000);
+    return new Date() <= gameEndTime  
+  });
 
-  const availableGames = games.filter((game) => game.date > new Date());
   const paginatedData = showAllGames ? games.slice((page - 1) * itemsPerPage, page * itemsPerPage) : availableGames.slice((page - 1) * itemsPerPage, page * itemsPerPage);
   const gamesCount = showAllGames ? games?.length : availableGames?.length;
 
