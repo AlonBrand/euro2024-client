@@ -4,7 +4,6 @@ import { GameTab } from '../components/GameTab';
 import { games} from '../constants/games';
 import euroLogo from "../images/euro-logo.svg"
 import { Pagination } from '@mui/material';
-import { SiComsol } from 'react-icons/si';
 
 const itemsPerPage = 5;
 
@@ -12,7 +11,7 @@ function Games(prop) {
   const {setModalContent, setOpen} = prop;
   const [reFetch, setReFetch] = useState('');
   // const [userBets, setUserBets] = useStat e();
-  const [showAllGames, setshowAllGames] = useState(true);
+  const [showAllGames, setshowAllGames] = useState(false);
   // const [showEighthGames, setShowEightGames] = useState(false);
   // const [showQuarterGames, setShowQuarterGames] = useState(false);
   // const [showSemiGames, setShowSemiGames] = useState(false);
@@ -34,7 +33,6 @@ function Games(prop) {
 
 
   const paginatedData = games?.filter(game => (showAllGames ? true : game.date > new Date()  )).slice((page - 1) * itemsPerPage, page * itemsPerPage);
-  console.log("paginatedData", paginatedData)
   useEffect(() => {
         const getUserBets = () => {
             try{
@@ -85,7 +83,6 @@ function Games(prop) {
       <>
         {
           Object.values(paginatedData)?.map((game, index) => {
-            console.log(paginatedData)
             // const curr_date = new Date();
             // const diffTime = curr_date - game?.date;
             
