@@ -5,7 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 
 export default function BetsModal(props) {
-  const { open, onClose, modalTitle, modalContent } = props;
+  const { open, onClose, modalContent } = props;
 
   return (
     <div>

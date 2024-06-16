@@ -7,8 +7,12 @@ import ReactCountryFlag from "react-country-flag"
 import { BiBarChart } from "react-icons/bi";
 import { useEffect } from "react";
 import moment from 'moment';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
+import { Button, Box, Typography } from '@mui/material';
+import ChatBox from "./ChatBox";
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
+
 
 
 export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }) => {
@@ -22,16 +26,36 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
     const [isAvailableGame, setIsAvailableGame] = useState(new Date() < date);
     const [betInProgress, setBetInProgress] = useState(false);
     const [showGameBetsInProgress, setShowGameBetsInProgress] = useState(false);
+    const [showStartChat, setShowStartChat] = useState(false);
+    const [isChatBoxVisible, setIsChatBoxVisible] = useState(false);
+
     const apiUrl = process.env.REACT_APP_API_URL;
+
+    const toggleChatBox = () => {
+        setIsChatBoxVisible(!isChatBoxVisible);
+    };
+
+    useEffect(() => {
+        if (isChatBoxVisible) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = 'auto';
+        }
+      }, [isChatBoxVisible]);
 
     useEffect(() => {
         const interval_id = setInterval(() => {
             setIsAvailableGame(new Date() < date);
+            const gameEndTime = new Date(date.getTime() + 90 * 60000); // Assuming the game duration is 90 minutes
+            const isGameActive = new Date() >= date && new Date() <= gameEndTime;
+            setShowStartChat(isGameActive);
         }, 10000);
 
         // Clear interval on component unmount
         return () => clearInterval(interval_id);
     }, [date]);
+
+
 
     const betRecivedContent = () => {
         return (
@@ -59,8 +83,6 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
             </div>
         )
     }
-
-
 
     const betOnGame = async () => {
         let msg = betRecivedContent()
@@ -338,6 +360,18 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
         return false;
     }
 
+    if (isChatBoxVisible) {
+        return (
+            <Box sx={{ textAlign: 'center', p: 2 }}>
+              <Typography variant="h4" gutterBottom>WebSocket with React and Flask</Typography>
+              <Button variant="contained" color="primary" onClick={toggleChatBox}>
+                {isChatBoxVisible ? 'Close Chat' : 'Open Chat'}
+              </Button>
+              {isChatBoxVisible && <ChatBox onClose={toggleChatBox} />}
+            </Box>
+          );
+    }
+
     return (
         <div className="game-tab-container" style={{ marginBottom: "30px" }}>
             {!isAvailableGame ?
@@ -359,16 +393,16 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                         <p>{info}</p>
                     }
                     {
+                        showStartChat &&
+                        <ChatBubbleIcon style={{ float: "left", height: "25px", width: "22px", marginLeft: "12px" }} onClick={toggleChatBox} />
+                    }
+                    {
                         showGameBetsInProgress ? 
-                        <CircularProgress  style={{ float: "right", height: "25px", width: "25px", marginRight: "10px" }}/>
+                        <CircularProgress  style={{ float: "right", height: "25px", width: "25px", marginRight: "12px" }}/>
                         :
-                        <BiBarChart style={{ float: "right", height: "25px", width: "25px", marginRight: "10px" }} onClick={showGameBets} />
+                        <BiBarChart style={{ float: "right", height: "25px", width: "25px", marginRight: "12px" }} onClick={showGameBets} />
                     }
                     <h3 style={{ paddingLeft: "35px" }}>No More Bet Kapara!</h3>
-                    {/* {
-                            serverGameID === id && serverScoreA !== undefined && serverScoreB !== undefined ? 
-                            `Your current bet: ${serverScoreA} - ${serverScoreB}` : undefined
-                        } */}
                     {getBetString()}
                 </div>
                 :
