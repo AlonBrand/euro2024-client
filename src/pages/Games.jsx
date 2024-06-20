@@ -32,7 +32,7 @@ function Games(prop) {
   };
   
   const availableGames = games.filter((game) => {
-    const gameEndTime = new Date(game.date.getTime() + 90 * 60000);
+    const gameEndTime = new Date(game.date.getTime() + 180 * 60000);
     return new Date() <= gameEndTime  
   });
 

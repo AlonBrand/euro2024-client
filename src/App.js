@@ -39,7 +39,7 @@ function App() {
             <BetsModal open={open} onClose={onCloseModal} modalTitle={modalTitle} modalContent={modalContent} />
             <Navbar isConnected={isConnected} setIsConnected={setIsConnected} getCookieName={getCookieName} />
             <Routes>
-                <Route path="/" exact element={<Home />}></Route>
+                <Route path="/" exact element={<Home setModalContent={setModalContent} setOpen={setOpen} onCloseModal={onCloseModal}/>}></Route>
                 <Route path="/games" element={window.USER_ID ? <Games setModalContent={setModalContent} setOpen={setOpen} modalState={open} onCloseModal={onCloseModal} /> : <Home />}></Route>
                 <Route path="/table" element={window.USER_ID ? <Rank /> : <Home />}></Route>
                 <Route path="/side-bets" element={window.USER_ID ? <SideBets /> : <Home />}></Route>

@@ -339,7 +339,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
     }
 
     return (
-        <div className="game-tab-container" style={{ marginBottom: "30px" }}>
+        <div className="game-tab-container" style={{ marginBottom: "30px", textAlign: "center" }}>
             {!isAvailableGame ?
                 <div id="game-tab-overlay"
                     style={{
@@ -364,7 +364,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
                         :
                         <BiBarChart style={{ float: "right", height: "25px", width: "25px", marginRight: "10px" }} onClick={showGameBets} />
                     }
-                    <h3 style={{ paddingLeft: "35px" }}>No More Bet Kapara!</h3>
+                    <h3 style={{ paddingLeft: "35px" }}>No More Bet!</h3>
                     {/* {
                             serverGameID === id && serverScoreA !== undefined && serverScoreB !== undefined ? 
                             `Your current bet: ${serverScoreA} - ${serverScoreB}` : undefined
