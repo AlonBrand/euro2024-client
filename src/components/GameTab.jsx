@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 
 
-export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }) => {
+export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status, wider}) => {
     let interval_id;
     const [scoreA, setScoreA] = useState();
     const [scoreB, setScoreB] = useState();
@@ -339,7 +339,7 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
     }
 
     return (
-        <div className="game-tab-container" style={{ marginBottom: "30px", textAlign: "center" }}>
+        <div className="game-tab-container" style={{ marginBottom: "30px", textAlign: "center", width: wider ? "100%" : "80%" }}>
             {!isAvailableGame ?
                 <div id="game-tab-overlay"
                     style={{

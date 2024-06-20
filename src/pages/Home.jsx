@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { flagsPaths, games } from '../constants/games';
+import { games } from '../constants/games';
+// import { flagsPaths } from '../constants/games';
 import euroLogo from "../images/euro-logo.svg"
-import ReactCountryFlag from "react-country-flag";
+// import ReactCountryFlag from "react-country-flag";
 import { Card, CardContent, Typography, Box } from '@mui/material';
 import "../App.css";
 import { GameTab } from '../components/GameTab';
@@ -106,6 +107,7 @@ function Home(prop) {
                 bets={bets}
                 realGames={realGames}
                 status={game.status}
+                wider
               />)
               // return (
               //   <div key={index} className="game-tab-container" style={{ margin: "30px", width: "auto", backgroundColor: game?.status === 'Final' ? "#E3C600" : game.status === 'Shitty' ? "#DDDDDD" : "" }}>
@@ -159,24 +161,24 @@ function Home(prop) {
     )
   }
 
-  const getDateTime = (date) => {
-    return (
-      <>
-        <div
-          style={{
-            "display": "flex",
-            "flexDirection": "row",
-            "justifyContent": "center",
-            "paddingBottom": "15px"
-          }}
-        >
-          <div>
-            {date?.toLocaleTimeString("he-IL")}
-          </div>
-        </div>
-      </>
-    )
-  }
+  // const getDateTime = (date) => {
+  //   return (
+  //     <>
+  //       <div
+  //         style={{
+  //           "display": "flex",
+  //           "flexDirection": "row",
+  //           "justifyContent": "center",
+  //           "paddingBottom": "15px"
+  //         }}
+  //       >
+  //         <div>
+  //           {date?.toLocaleTimeString("he-IL")}
+  //         </div>
+  //       </div>
+  //     </>
+  //   )
+  // }
 
   return (
     <>
