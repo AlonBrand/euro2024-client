@@ -6,6 +6,7 @@ import euroLogo from "../images/euro-logo.svg"
 import { Card, CardContent, Typography, Box } from '@mui/material';
 import "../App.css";
 import { GameTab } from '../components/GameTab';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Home(prop) {
   const [isEmptyDay, setIsEmptyDay] = useState(true);
@@ -94,21 +95,21 @@ function Home(prop) {
                 return null;
               }
               return (
-              <GameTab
-                key={`${game.id}-${index}`}
-                id={game.id}
-                teamA={game.teamA}
-                teamB={game.teamB}
-                date={game.date}
-                info={game.info}
-                setModalContent={setModalContent}
-                setModalOpen={setOpen}
-                setReFetch={setReFetch}
-                bets={bets}
-                realGames={realGames}
-                status={game.status}
-                wider
-              />)
+                <GameTab
+                  key={`${game.id}-${index}`}
+                  id={game.id}
+                  teamA={game.teamA}
+                  teamB={game.teamB}
+                  date={game.date}
+                  info={game.info}
+                  setModalContent={setModalContent}
+                  setModalOpen={setOpen}
+                  setReFetch={setReFetch}
+                  bets={bets}
+                  realGames={realGames}
+                  status={game.status}
+                  wider
+                />)
               // return (
               //   <div key={index} className="game-tab-container" style={{ margin: "30px", width: "auto", backgroundColor: game?.status === 'Final' ? "#E3C600" : game.status === 'Shitty' ? "#DDDDDD" : "" }}>
               //     <div
@@ -228,26 +229,37 @@ function Home(prop) {
           }
         </Card>
       }
-      <Card sx={{ maxWidth: 345, mt: 4, margin: '20px auto' }}>
-        <CardContent>
-          <Typography variant="h5" component="div" paddingBottom="2vh">
-            Today's Matches
-          </Typography>
-          <Box display="flex" flexDirection="column" alignItems="center" >
-            {getHomeContent(games)}
-          </Box>
-          {
-            isEmptyDay &&
-            <Typography variant="h6" color="text.secondary" gutterBottom style={{ marginBottom: 0 }}>
-              No Matches Today!
-            </Typography>
-          }
-          {/* {getHomeContent(eighthGames)}
-          {getHomeContent(quarterGames)}
-          {getHomeContent(semiGames)}
-          {getHomeContent(finalGames)} */}
-        </CardContent>
-      </Card>
+      {
+        bets !== undefined ?
+          <Card sx={{ maxWidth: 345, mt: 4, margin: '20px auto' }}>
+            <CardContent>
+              <Typography variant="h5" component="div" paddingBottom="2vh">
+                Today's Matches
+              </Typography>
+              <Box display="flex" flexDirection="column" alignItems="center" >
+                {getHomeContent(games)}
+              </Box>
+              {
+                isEmptyDay &&
+                <Typography variant="h6" color="text.secondary" gutterBottom style={{ marginBottom: 0 }}>
+                  No Matches Today!
+                </Typography>
+              }
+              {/* {getHomeContent(eighthGames)}
+            {getHomeContent(quarterGames)}
+            {getHomeContent(semiGames)}
+            {getHomeContent(finalGames)} */}
+            </CardContent>
+          </Card>
+          :
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            // height="100vh"
+          >
+            <CircularProgress size={32} />
+          </Box>}
     </>
   )
 }
