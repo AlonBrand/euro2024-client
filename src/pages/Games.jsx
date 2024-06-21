@@ -50,7 +50,7 @@ function Games(prop) {
                     // const sortedData = data?.userBets?.sort((a, b)=>a[2] - b[2]);
                         for(let bet of data?.userBets) {
                         if(Array.isArray(bet) && bet?.length >= 4) {
-                            const object = Object.assign({id: bet[2], value: `Current bet: ${bet[3]} - ${bet[4]}`, scoreA: bet[3], scoreB: bet[4]})
+                            const object = Object.assign({id: bet[2], value: `Your bet: ${bet[3]} - ${bet[4]}`, scoreA: bet[3], scoreB: bet[4]})
                             tempBets.push(object);
                         }
                     }

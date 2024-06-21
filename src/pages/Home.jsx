@@ -31,7 +31,7 @@ function Home(prop) {
               // const sortedData = data?.userBets?.sort((a, b)=>a[2] - b[2]);
               for (let bet of data?.userBets) {
                 if (Array.isArray(bet) && bet?.length >= 4) {
-                  const object = Object.assign({ id: bet[2], value: `Current bet: ${bet[3]} - ${bet[4]}`, scoreA: bet[3], scoreB: bet[4] })
+                  const object = Object.assign({ id: bet[2], value: `Your bet: ${bet[3]} - ${bet[4]}`, scoreA: bet[3], scoreB: bet[4] })
                   tempBets.push(object);
                 }
               }
@@ -53,7 +53,7 @@ function Home(prop) {
       }
     }
     getUserBets();
-  }, [reFetch, apiUrl]);
+  }, [reFetch, apiUrl, window.USER_ID]);
 
   useEffect(() => {
     const getSideBets = () => {
@@ -62,9 +62,7 @@ function Home(prop) {
           fetch(`${apiUrl}/get-side-bets/${window.USER_ID}`)
             .then((response) => response.json()
               .then((data) => {
-                console.log("🚀 ~ .then ~ data:", data)
                 setDidFetch(true);
-                console.log(data)
                 setWinningTeam(data?.winningTeam);
                 setTopScorer(data?.topScorer);
                 setUsers(data?.users?.map((user) => {
