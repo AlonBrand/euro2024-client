@@ -500,64 +500,64 @@ export const games =
     }
 ]
 
-// export const eighthGames = [
-//     {
-//         id: 49,
-//         teamA: "Netherlands",
-//         teamB: "United States",
-//         date: new Date(2022, 11, 3, 17),
-//         status: "Eighth"
-//     },
-//     {
-//         id: 50,
-//         teamA: "Argentina",
-//         teamB: "Australia",
-//         date: new Date(2022, 11, 3, 21),
-//         status: "Eighth"
-//     },
-//     {
-//         id: 51,
-//         teamA: "France",
-//         teamB: "Poland",
-//         date: new Date(2022, 11, 4, 17),
-//         status: "Eighth"
-//     },
-//     {
-//         id: 52,
-//         teamA: "England",
-//         teamB: "Senegal",
-//         date: new Date(2022, 11, 4, 21),
-//         status: "Eighth"
-//     },
-//     {
-//         id: 53,
-//         teamA: "Japan",
-//         teamB: "Croatia",
-//         date: new Date(2022, 11, 5, 17),
-//         status: "Eighth"
-//     },
-//     {
-//         id: 54,
-//         teamA: "Brazil",
-//         teamB: "Korea",
-//         date: new Date(2022, 11, 5, 21),
-//         status: "Eighth"
-//     },
-//     {
-//         id: 55,
-//         teamA: "Morocco",
-//         teamB: "Spain",
-//         date: new Date(2022, 11, 6, 17),
-//         status: "Eighth"
-//     },
-//     {
-//         id: 57,
-//         teamA: "Portugal",
-//         teamB: "Switzerland",
-//         date: new Date(2022, 11, 6, 21),
-//         status: "Eighth"
-//     },
-// ]
+export const eighthGames = [
+    {
+        id: 37,
+        teamA: "Switzerland",
+        teamB: "Italy",
+        date: new Date(2024, 5, 29, 19),
+        status: "Eighth"
+    },
+    {
+        id: 38,
+        teamA: "Germany",
+        teamB: "Denmark",
+        date: new Date(2024, 5, 29, 22),
+        status: "Eighth"
+    },
+    {
+        id: 39,
+        teamA: "England",
+        teamB: "Slovakia",
+        date: new Date(2024, 5, 30, 19),
+        status: "Eighth"
+    },
+    {
+        id: 40,
+        teamA: "Spain",
+        teamB: "Georgia",
+        date: new Date(2024, 5, 30, 22),
+        status: "Eighth"
+    },
+    {
+        id: 41,
+        teamA: "France",
+        teamB: "Belgium",
+        date: new Date(2024, 6, 1, 19),
+        status: "Eighth"
+    },
+    {
+        id: 42,
+        teamA: "Portugal",
+        teamB: "Slovenia",
+        date: new Date(2024, 6, 1, 22),
+        status: "Eighth"
+    },
+    {
+        id: 43,
+        teamA: "Romania",
+        teamB: "Netherlands",
+        date: new Date(2024, 6, 2, 19),
+        status: "Eighth"
+    },
+    {
+        id: 44,
+        teamA: "Austria",
+        teamB: "Turkey",
+        date: new Date(2024, 6, 2, 22),
+        status: "Eighth"
+    },
+]
 
 // export const quarterGames = [
 //     {
