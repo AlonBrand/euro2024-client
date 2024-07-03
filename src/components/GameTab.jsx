@@ -308,18 +308,22 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
 
     const getMatchPoints = (serverScoreA, serverScoreB) => {
         let bull_points = '+ 3 Points', part_points = '+ 1 Point';
-        if (status === 'Eighth' || status === 'Quarter') {
+        if (status === 'Eighth') {
             bull_points = '+ 4 Points';
             part_points = '+ 2 Points';
         }
-        else if (status === 'Semi' || status === 'Shitty') {
-            bull_points = '+ 5 Points';
-            part_points = '+ 2 Points';
+        else if (status === 'Quarter') {
+            bull_points = '+ 8 Points';
+            part_points = '+ 4 Points';
         }
-        else if (status === 'Final') {
-            bull_points = '+ 5 Points';
-            part_points = '+ 3 Points';
-        }
+        // else if (status === 'Semi' || status === 'Shitty') {
+        //     bull_points = '+ 5 Points';
+        //     part_points = '+ 2 Points';
+        // }
+        // else if (status === 'Final') {
+        //     bull_points = '+ 5 Points';
+        //     part_points = '+ 3 Points';
+        // }
 
         for (let bet of bets) {
             if (bet.id === id) {

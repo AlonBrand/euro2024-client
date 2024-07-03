@@ -500,95 +500,36 @@ export const games =
     }
 ]
 
-export const eighthGames = [
+export const quarterGames = [
     {
-        id: 37,
-        teamA: "Switzerland",
-        teamB: "Italy",
-        date: new Date(2024, 5, 29, 19),
-        status: "Eighth"
-    },
-    {
-        id: 38,
-        teamA: "Germany",
-        teamB: "Denmark",
-        date: new Date(2024, 5, 29, 22),
-        status: "Eighth"
-    },
-    {
-        id: 39,
-        teamA: "England",
-        teamB: "Slovakia",
-        date: new Date(2024, 5, 30, 19),
-        status: "Eighth"
-    },
-    {
-        id: 40,
+        id: 45,
         teamA: "Spain",
-        teamB: "Georgia",
-        date: new Date(2024, 5, 30, 22),
-        status: "Eighth"
+        teamB: "Germany",
+        date: new Date(2024, 6, 5, 19),
+        status: "Quarter"
     },
     {
-        id: 41,
-        teamA: "France",
-        teamB: "Belgium",
-        date: new Date(2024, 6, 1, 19),
-        status: "Eighth"
-    },
-    {
-        id: 42,
+        id: 46,
         teamA: "Portugal",
-        teamB: "Slovenia",
-        date: new Date(2024, 6, 1, 22),
-        status: "Eighth"
+        teamB: "France",
+        date: new Date(2024, 6, 5, 22),
+        status: "Quarter"
     },
     {
-        id: 43,
-        teamA: "Romania",
-        teamB: "Netherlands",
-        date: new Date(2024, 6, 2, 19),
-        status: "Eighth"
+        id: 47,
+        teamA: "England",
+        teamB: "Switzerland",
+        date: new Date(2024, 6, 6, 19),
+        status: "Quarter"
     },
     {
-        id: 44,
-        teamA: "Austria",
+        id: 48,
+        teamA: "Netherlands",
         teamB: "Turkey",
-        date: new Date(2024, 6, 2, 22),
-        status: "Eighth"
-    },
+        date: new Date(2024, 6, 6, 22),
+        status: "Quarter"
+    }  
 ]
-
-// export const quarterGames = [
-//     {
-//         id: 58,
-//         teamA: "Croatia",
-//         teamB: "Brazil",
-//         date: new Date(2022, 11, 9, 17),
-//         status: "Quarter"
-//     },
-//     {
-//         id: 59,
-//         teamA: "Netherlands",
-//         teamB: "Argentina",
-//         date: new Date(2022, 11, 9, 21),
-//         status: "Quarter"
-//     },
-//     {
-//         id: 60,
-//         teamA: "Morocco",
-//         teamB: "Portugal",
-//         date: new Date(2022, 11, 10, 17),
-//         status: "Quarter"
-//     },
-//     {
-//         id: 61,
-//         teamA: "England",
-//         teamB: "France",
-//         date: new Date(2022, 11, 10, 21),
-//         status: "Quarter"
-//     }  
-// ]
 
 // export const semiGames = [
 //     {

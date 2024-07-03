@@ -111,12 +111,12 @@ function SideBets() {
     }
 
     return (
-        <div>
+        <div style={{textAlign: "center"}}>
             <div style={{ textAlign: "center", marginTop: "4vh" }}>
                 <img alt='' src={euroLogo} />
             </div>
             <h1 style={{ "textAlign": "center", "paddingTop": "20px", "paddingBottom": "20px" }}>Side Bets</h1>
-            {
+            {/* {
                 (new Date() <= euro2024StartTime) &&
                 <div style={{ margin: "0px 20px 20px 20px" }} className="side-bets">
                     <h3 style={{ marginBottom: "10px" }}> Winning Team</h3>
@@ -141,11 +141,9 @@ function SideBets() {
                     </div>
                 </div>
 
-            }
-
-
+            } */}
             {
-                (sideBets !== undefined && sideBets.length > 0 && !postInProgress) &&
+                (sideBets !== undefined && sideBets.length > 0 && !postInProgress) ?
                 <table className="rank-table" style={{ marginBottom: "50px", textAlign: "center" }}>
                     <thead>
                         <tr>
@@ -174,6 +172,8 @@ function SideBets() {
                         }
                     </tbody>
                 </table>
+                :
+                <CircularProgress style={{ marginTop: "2vh", textAlign: "center" }} size={32} />
             }
         </div>
     )

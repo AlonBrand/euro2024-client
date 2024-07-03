@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { games } from '../constants/games';
+import { quarterGames } from '../constants/games';
 // import { flagsPaths } from '../constants/games';
 import euroLogo from "../images/euro-logo.svg"
 // import ReactCountryFlag from "react-country-flag";
@@ -235,7 +235,7 @@ function Home(prop) {
                 Today's Matches
               </Typography>
               <Box display="flex" flexDirection="column" alignItems="center" >
-                {getHomeContent(games)}
+                {getHomeContent(quarterGames)}
               </Box>
               {
                 isEmptyDay &&
@@ -243,7 +243,7 @@ function Home(prop) {
                   No Matches Today!
                 </Typography>
               }
-              {/* {getHomeContent(eighthGames)}
+              {/* {getHomeContent(quarterGames)}
             {getHomeContent(quarterGames)}
             {getHomeContent(semiGames)}
             {getHomeContent(finalGames)} */}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import euroLogo from "../images/euro-logo.svg"
+import CircularProgress from '@mui/material/CircularProgress';
 import "../App.css";
 
 
@@ -38,7 +39,7 @@ function Rank() {
             </div>
             <h1 style={{ "paddingTop": "20px", "paddingBottom": "20px" }}>Tournament Table</h1>
             {
-                users?.length > 0 &&
+                users?.length > 0 ?
                 <table className="rank-table" style={{ marginBottom: "50px" }}>
                     <thead>
                         <tr>
@@ -61,6 +62,8 @@ function Rank() {
                         }
                     </tbody>
                 </table>
+                :
+                <CircularProgress size={32} />
             }
         </div>
     );
