@@ -316,10 +316,10 @@ export const GameTab = ({ id, teamA, teamB, date, info, setModalContent, setModa
             bull_points = '+ 8 Points';
             part_points = '+ 4 Points';
         }
-        // else if (status === 'Semi' || status === 'Shitty') {
-        //     bull_points = '+ 5 Points';
-        //     part_points = '+ 2 Points';
-        // }
+        else if (status === 'Semi' || status === 'Shitty') {
+            bull_points = '+ 10 Points';
+            part_points = '+ 5 Points';
+        }
         // else if (status === 'Final') {
         //     bull_points = '+ 5 Points';
         //     part_points = '+ 3 Points';

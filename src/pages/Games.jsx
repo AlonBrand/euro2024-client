@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../App.css";
 import { GameTab } from '../components/GameTab';
-import { quarterGames } from '../constants/games';
+import { semiGames } from '../constants/games';
 import euroLogo from "../images/euro-logo.svg"
 import { Pagination } from '@mui/material';
 
@@ -26,13 +26,13 @@ function Games(prop) {
     }
   };
 
-  const availableGames = quarterGames.filter((game) => {
+  const availableGames = semiGames.filter((game) => {
     const gameEndTime = new Date(game.date.getTime() + 180 * 60000);
     return new Date() <= gameEndTime
   });
 
-  const paginatedData = showAllGames ? quarterGames.slice((page - 1) * itemsPerPage, page * itemsPerPage) : availableGames.slice((page - 1) * itemsPerPage, page * itemsPerPage);
-  const gamesCount = showAllGames ? quarterGames?.length : availableGames?.length;
+  const paginatedData = showAllGames ? semiGames.slice((page - 1) * itemsPerPage, page * itemsPerPage) : availableGames.slice((page - 1) * itemsPerPage, page * itemsPerPage);
+  const gamesCount = showAllGames ? semiGames?.length : availableGames?.length;
 
   useEffect(() => {
     const getUserBets = () => {
@@ -113,7 +113,7 @@ function Games(prop) {
         <div className="game-tab-container" style={{ marginBottom: "30px", padding: "10px", fontWeight: "bold" }} onClick={toggleShowGroupMatches}>
           {showAllGames ? 'Show Available Matches' : 'Show All Matches'}
         </div>
-        {getGamesContent(quarterGames)}
+        {getGamesContent(semiGames)}
         <Pagination
           count={Math.ceil(gamesCount / itemsPerPage)}
           page={page}

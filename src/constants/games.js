@@ -531,22 +531,22 @@ export const quarterGames = [
     }  
 ]
 
-// export const semiGames = [
-//     {
-//         id: 62,
-//         teamA: "Argentina",
-//         teamB: "Croatia",
-//         date: new Date(2022, 11, 13, 21),
-//         status: "Semi"
-//     },
-//     {
-//         id: 63,
-//         teamA: "France",
-//         teamB: "Morocco",
-//         date: new Date(2022, 11, 14, 21),
-//         status: "Semi"
-//     } 
-// ]
+export const semiGames = [
+    {
+        id: 49,
+        teamA: "Spain",
+        teamB: "France",
+        date: new Date(2024, 6, 9, 22),
+        status: "Semi"
+    },
+    {
+        id: 50,
+        teamA: "Netherlands",
+        teamB: "England",
+        date: new Date(2024, 6, 9, 22),
+        status: "Semi"
+    } 
+]
 
 // export const finalGames = [
 //     {

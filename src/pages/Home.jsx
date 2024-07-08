@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { quarterGames } from '../constants/games';
-// import { flagsPaths } from '../constants/games';
+import { semiGames } from '../constants/games';
 import euroLogo from "../images/euro-logo.svg"
-// import ReactCountryFlag from "react-country-flag";
 import { Card, CardContent, Typography, Box } from '@mui/material';
-import "../App.css";
 import { GameTab } from '../components/GameTab';
 import CircularProgress from '@mui/material/CircularProgress';
+import "../App.css";
 
 function Home(prop) {
   const [isEmptyDay, setIsEmptyDay] = useState(true);
@@ -235,7 +233,7 @@ function Home(prop) {
                 Today's Matches
               </Typography>
               <Box display="flex" flexDirection="column" alignItems="center" >
-                {getHomeContent(quarterGames)}
+                {getHomeContent(semiGames)}
               </Box>
               {
                 isEmptyDay &&
@@ -243,10 +241,6 @@ function Home(prop) {
                   No Matches Today!
                 </Typography>
               }
-              {/* {getHomeContent(quarterGames)}
-            {getHomeContent(quarterGames)}
-            {getHomeContent(semiGames)}
-            {getHomeContent(finalGames)} */}
             </CardContent>
           </Card>
           :
