@@ -543,7 +543,7 @@ export const semiGames = [
         id: 50,
         teamA: "Netherlands",
         teamB: "England",
-        date: new Date(2024, 6, 9, 22),
+        date: new Date(2024, 6, 10, 22),
         status: "Semi"
     } 
 ]
