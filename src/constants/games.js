@@ -564,3 +564,13 @@ export const semiGames = [
 //         status: "Final"
 //     } 
 // ]
+
+export const finalGame = [    
+    {
+        id: 51,
+        teamA: "Spain",
+        teamB: "England",
+        date: new Date(2024, 6, 14, 22),
+        status: "Final"
+    } 
+]

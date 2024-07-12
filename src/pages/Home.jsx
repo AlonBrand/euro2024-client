@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { semiGames } from '../constants/games';
+import { finalGame } from '../constants/games';
 import euroLogo from "../images/euro-logo.svg"
 import { Card, CardContent, Typography, Box } from '@mui/material';
 import { GameTab } from '../components/GameTab';
@@ -233,7 +233,7 @@ function Home(prop) {
                 Today's Matches
               </Typography>
               <Box display="flex" flexDirection="column" alignItems="center" >
-                {getHomeContent(semiGames)}
+                {getHomeContent(finalGame)}
               </Box>
               {
                 isEmptyDay &&
